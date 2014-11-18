@@ -3,7 +3,6 @@ package prueba;
 //Clase1
 @SuppressWarnings("unused")
 class Prueba {
-
 public static void main(String[] args)
 
         {
