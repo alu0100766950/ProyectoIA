@@ -1,0 +1,45 @@
+package prueba;
+
+import java.awt.GridLayout;
+//Interfaz
+import javax.swing.*;
+import java.awt.*;
+
+import javax.swing.JFrame;
+import javax.swing.JLabel;
+@SuppressWarnings("unused")
+public class Interfaz extends JFrame{
+    private static final long serialVersionUID = 1L;
+    private static final int HEIGHT = 600;
+    private static final int WIDTH = 700;
+    int size_tablero_F = 5;
+    int size_tablero_C = 5;
+    public Interfaz() {
+        String title = "Tablero";
+        setTitle(title);
+        setSize(WIDTH, HEIGHT);
+        setVisible(true);
+        setDefaultCloseOperation(EXIT_ON_CLOSE);
+        setLayout(new GridLayout(size_tablero_F,size_tablero_C));
+        
+        ImageIcon img = new ImageIcon("images/Grass.png");
+        JButton [][] a = new JButton [size_tablero_F][size_tablero_C];
+        for(int i = 0; i < size_tablero_F; i++)
+        	for(int j = 0; j < size_tablero_C; j++) {
+        		a[i][j] = new JButton(img);
+        		add(a[i][j]);
+        	}
+        
+        //Inicialización inicial del tablero lleno de hierba
+    	/*Casilla [][] tablero = new Casilla [size_tablero_F][size_tablero_C];
+		for(int i = 0; i < size_tablero_F; i++) { 
+            for(int j = 0; j < size_tablero_C; j++) {
+                tablero[i][j] = new Casilla(1);
+                add(tablero[i][j].get_cas());
+            }
+            
+		}*/
+        
+    }
+}
+//Fin Interfaz
