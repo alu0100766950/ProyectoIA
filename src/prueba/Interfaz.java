@@ -20,7 +20,7 @@ public class Interfaz extends JFrame{
         setSize(WIDTH, HEIGHT);
         setVisible(true);
         setDefaultCloseOperation(EXIT_ON_CLOSE);
-        //setLayout(new GridLayout(size_tablero_F,size_tablero_C));
+        setLayout(new GridLayout(size_tablero_F,size_tablero_C));
         /*
         ImageIcon img = new ImageIcon("images/Grass.png");
         JLabel [][] a = new JLabel [size_tablero_F][size_tablero_C];

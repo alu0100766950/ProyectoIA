@@ -1,5 +1,7 @@
 package prueba;
 
+import java.awt.Image;
+
 import javax.swing.*;
 
 
@@ -8,9 +10,10 @@ public class Casilla {
 	int type_t;	//1 = hierba, 2 = mina, 3 = inicio, 4 = final
 	
 	Casilla(int type) {
+		cas_t = new JLabel();
 		type_t = type;
-		ImageIcon img = new ImageIcon("images/Grass_reduced.png");
-		cas_t = new JLabel(img);
+		ImageIcon img = new ImageIcon("images/Grass_develope.png");
+		cas_t.setIcon(new ImageIcon(img.getImage().getScaledInstance(125,125,Image.SCALE_SMOOTH)));
 	}
 	void set_type(int type) {
 		type_t = type;
