@@ -12,8 +12,8 @@ public class Interfaz extends JFrame{
     private static final long serialVersionUID = 1L;
     private static final int HEIGHT = 600;
     private static final int WIDTH = 700;
-    int size_tablero_F = 5;
-    int size_tablero_C = 5;
+    int size_tablero_F = 10;
+    int size_tablero_C = 10;
     public Interfaz() {
         String title = "Tablero";
         setTitle(title);
