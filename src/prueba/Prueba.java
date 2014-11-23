@@ -1,7 +1,7 @@
 package prueba;
 
 //Clase1
-@SuppressWarnings("unused")
+//@SuppressWarnings("unused")
 class Prueba {
 	
 public static void main(String[] args)

@@ -7,11 +7,11 @@ import java.util.Random;
 //Aqui elimine unos cuantos import que te sobraban porque ya tenias esos dos.
 
 
-@SuppressWarnings("unused")
+//@SuppressWarnings("unused")
 public class Interfaz extends JFrame{
     private static final long serialVersionUID = 1L;
-    private int WIDTH;
-    private int HEIGHT;
+    private int WIDTH = 800;
+    private int HEIGHT = 600;
     private int size_tablero_F;
     private int size_tablero_C;
     private Casilla [][] tablero;
@@ -19,8 +19,8 @@ public class Interfaz extends JFrame{
     public Interfaz(int size_f, int size_c) {
     	size_tablero_F = size_f;
     	size_tablero_C = size_c;
-    	WIDTH = Toolkit.getDefaultToolkit().getScreenSize().width;
-    	HEIGHT = Toolkit.getDefaultToolkit().getScreenSize().height;
+    	//WIDTH = Toolkit.getDefaultToolkit().getScreenSize().width;
+    	//HEIGHT = Toolkit.getDefaultToolkit().getScreenSize().height;
         String title = "Tablero2";
         setTitle(title);
         setSize(WIDTH, HEIGHT);
