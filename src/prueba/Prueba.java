@@ -7,7 +7,7 @@ class Prueba {
 public static void main(String[] args)
 
       {
-		Interfaz frame = new Interfaz(10,10);
+		Interfaz frame = new Interfaz(30,30);
 		frame.obstaculosAleatorios(10);
 		frame.validate();
 		/*

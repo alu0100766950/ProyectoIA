@@ -10,8 +10,8 @@ import java.util.Random;
 //@SuppressWarnings("unused")
 public class Interfaz extends JFrame{
     private static final long serialVersionUID = 1L;
-    private int WIDTH = 800;
-    private int HEIGHT = 600;
+    private int WIDTH;
+    private int HEIGHT;
     private int size_tablero_F;
     private int size_tablero_C;
     private Casilla [][] tablero;
@@ -19,8 +19,8 @@ public class Interfaz extends JFrame{
     public Interfaz(int size_f, int size_c) {
     	size_tablero_F = size_f;
     	size_tablero_C = size_c;
-    	//WIDTH = Toolkit.getDefaultToolkit().getScreenSize().width;
-    	//HEIGHT = Toolkit.getDefaultToolkit().getScreenSize().height;
+    	WIDTH = Toolkit.getDefaultToolkit().getScreenSize().width;
+    	HEIGHT = Toolkit.getDefaultToolkit().getScreenSize().height;
         String title = "Tablero2";
         setTitle(title);
         setSize(WIDTH, HEIGHT);
@@ -50,7 +50,7 @@ public class Interfaz extends JFrame{
             }
             
 		}
-        
+		validate();
     }
     
     public void cambiarCasilla(Casilla casilla, int type){
@@ -88,6 +88,23 @@ public class Interfaz extends JFrame{
     		}
     		cambiarCasilla(tablero[casilla[0]][casilla[1]],2); //De momento solo hay 1 tipo de obstaculo
     	}
+    }
+    public int[] getCoordenadas(Casilla casilla) {
+        int [] coordenadas = new int[2];
+        for (int i=0; i < this.tablero.length; i++) {
+            for (int j=0; j < this.tablero.length; j++) {
+                if (this.tablero[i][j] == casilla) {
+                    coordenadas[0] = i;
+                    coordenadas[1] = j;
+                }
+            }
+        }
+        return coordenadas;
+    }
+    public void pintar(int x, int y, int type) {
+    	int xa = WIDTH/size_tablero_F;
+        int ya = HEIGHT/size_tablero_C;
+    	tablero[x][y].actualizar(type,xa,ya);
     }
 
 }
