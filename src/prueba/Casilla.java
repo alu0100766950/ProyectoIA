@@ -1,6 +1,6 @@
 package prueba;
 
-import java.awt.Image;
+import java.awt.*;
 import javax.swing.*;
 
 public class Casilla {
@@ -9,17 +9,33 @@ public class Casilla {
 	
 	public Casilla(int type, int size_x, int size_y){
 		cas_t = new JLabel();
+		cas_t.setBorder (BorderFactory.createLineBorder(Color.black));
 		actualizar(type, size_x, size_y);
 
 	}
 	
 	private void actualizar(int type, int size_x, int size_y){
 		type_t = type;
-		if(type == 1){
-			ImageIcon img = new ImageIcon("images/Grass_develope.png");
+		ImageIcon img;
+		switch(type){
+		case 1: 
+			img = new ImageIcon("images/Grass.png");
 			cas_t.setIcon(new ImageIcon(img.getImage().getScaledInstance(size_x,size_y,Image.SCALE_SMOOTH)));
+			break;
+		case 2:
+			img = new ImageIcon("images/Mina.png");
+			cas_t.setIcon(new ImageIcon(img.getImage().getScaledInstance(size_x,size_y,Image.SCALE_SMOOTH)));
+			break;
+		case 3:
+			img = new ImageIcon("images/Inicio.png");
+			cas_t.setIcon(new ImageIcon(img.getImage().getScaledInstance(size_x,size_y,Image.SCALE_SMOOTH)));
+			break;
+		case 4:
+			img = new ImageIcon("images/Fin.png");
+			cas_t.setIcon(new ImageIcon(img.getImage().getScaledInstance(size_x,size_y,Image.SCALE_SMOOTH)));
+			break;
 		}
-		//Una vez funcione bien el tablero, añadir las demas imagenes dependiendo del type
+
 	}
 	
 	public void set_type(int type, int size_x, int size_y) {

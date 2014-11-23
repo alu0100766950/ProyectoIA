@@ -1,8 +1,8 @@
 package prueba;
 
 import javax.swing.*;
-
 import java.awt.*;
+import java.util.Random;
 
 //Aqui elimine unos cuantos import que te sobraban porque ya tenias esos dos.
 
@@ -10,8 +10,8 @@ import java.awt.*;
 @SuppressWarnings("unused")
 public class Interfaz extends JFrame{
     private static final long serialVersionUID = 1L;
-    private static final int WIDTH = 800;
-    private static final int HEIGHT = 600;
+    private int WIDTH;
+    private int HEIGHT;
     private int size_tablero_F;
     private int size_tablero_C;
     private Casilla [][] tablero;
@@ -19,6 +19,8 @@ public class Interfaz extends JFrame{
     public Interfaz(int size_f, int size_c) {
     	size_tablero_F = size_f;
     	size_tablero_C = size_c;
+    	WIDTH = Toolkit.getDefaultToolkit().getScreenSize().width;
+    	HEIGHT = Toolkit.getDefaultToolkit().getScreenSize().height;
         String title = "Tablero2";
         setTitle(title);
         setSize(WIDTH, HEIGHT);
@@ -51,6 +53,42 @@ public class Interfaz extends JFrame{
         
     }
     
+    public void cambiarCasilla(Casilla casilla, int type){
+    	casilla.set_type(type, WIDTH/size_tablero_F,HEIGHT/size_tablero_C);
+    }
+    
+    public void obstaculosAleatorios(int porcentaje){
+    	int numObstaculos = (porcentaje * size_tablero_F * size_tablero_C) / 100;
+    	int[] casilla = new int[2];
+    	Random rnd = new Random();
+    	
+    	//GENERAMOS EL INICIO
+    	casilla[0] = rnd.nextInt(size_tablero_F);
+		casilla[1] = rnd.nextInt(size_tablero_C);
+		cambiarCasilla(tablero[casilla[0]][casilla[1]],3);
+		
+		
+		//GENERAMOS EL FINAL
+    	casilla[0] = rnd.nextInt(size_tablero_F);
+		casilla[1] = rnd.nextInt(size_tablero_C);
+		while(tablero[casilla[0]][casilla[1]].get_type() == 3){
+			casilla[0] = rnd.nextInt(size_tablero_F);
+			casilla[1] = rnd.nextInt(size_tablero_C);
+		}
+		cambiarCasilla(tablero[casilla[0]][casilla[1]],4);
+		
+		
+    	//GENERAMOS LOS OBSTACULOS
+    	for(int i=0; i<numObstaculos; i++){
+    		casilla[0] = rnd.nextInt(size_tablero_F);
+    		casilla[1] = rnd.nextInt(size_tablero_C);
+    		while(tablero[casilla[0]][casilla[1]].get_type() == 3  || tablero[casilla[0]][casilla[1]].get_type() == 4) {
+    			casilla[0] = rnd.nextInt(size_tablero_F);
+    			casilla[1] = rnd.nextInt(size_tablero_C);
+    		}
+    		cambiarCasilla(tablero[casilla[0]][casilla[1]],2); //De momento solo hay 1 tipo de obstaculo
+    	}
+    }
 
 }
 //Fin Interfaz

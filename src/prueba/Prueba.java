@@ -8,6 +8,8 @@ public static void main(String[] args)
 
       {
 		Interfaz frame = new Interfaz(10,10);
+		frame.obstaculosAleatorios(10);
+		frame.validate();
 		/*
 		Cuando funcione el tablero, debemos convertir esto en un layout de dos, el layout de la derecha mas grande porque es donde ira el tablero
 		y el de la izquierda mas pequeño porque es donde ira la parte de Saul (que nose nada de como le va la verdad).
