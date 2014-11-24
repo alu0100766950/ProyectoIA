@@ -17,9 +17,10 @@ public class Interfaz extends JPanel{
     private int size_tablero_C;
     private Casilla [][] tablero;
     private int seleccion;
+    private int porcentaje;
     
     public Interfaz(int size_f, int size_c) {
-    	seleccion = 4;
+    	seleccion = 7;
     	size_tablero_F = size_f;
     	size_tablero_C = size_c;
     	WIDTH = (Toolkit.getDefaultToolkit().getScreenSize().width);
@@ -32,7 +33,7 @@ public class Interfaz extends JPanel{
         tablero = new Casilla [size_tablero_F][size_tablero_C];
 		for(int i = 0; i < size_tablero_F; i++) { 
             for(int j = 0; j < size_tablero_C; j++) {
-                tablero[i][j] = new Casilla(1,x,y,this);
+                tablero[i][j] = new Casilla(7,x,y,this);
                 // Las tres lineas siguientes las uso para intentar que la imagen se redimensione si mueves la ventana
                 
                /*
@@ -57,33 +58,35 @@ public class Interfaz extends JPanel{
     public void obstaculosAleatorios(int porcentaje){
     	int numObstaculos = (porcentaje * size_tablero_F * size_tablero_C) / 100;
     	int[] casilla = new int[2];
+    	int obstaculo;
     	Random rnd = new Random();
     	
     	//GENERAMOS EL INICIO
     	casilla[0] = rnd.nextInt(size_tablero_F);
 		casilla[1] = rnd.nextInt(size_tablero_C);
-		cambiarCasilla(tablero[casilla[0]][casilla[1]],3);
+		cambiarCasilla(tablero[casilla[0]][casilla[1]],5);
 		
 		
 		//GENERAMOS EL FINAL
     	casilla[0] = rnd.nextInt(size_tablero_F);
 		casilla[1] = rnd.nextInt(size_tablero_C);
-		while(tablero[casilla[0]][casilla[1]].get_type() == 3){
+		while(tablero[casilla[0]][casilla[1]].get_type() == 5){
 			casilla[0] = rnd.nextInt(size_tablero_F);
 			casilla[1] = rnd.nextInt(size_tablero_C);
 		}
-		cambiarCasilla(tablero[casilla[0]][casilla[1]],4);
+		cambiarCasilla(tablero[casilla[0]][casilla[1]],6);
 		
 		
     	//GENERAMOS LOS OBSTACULOS
     	for(int i=0; i<numObstaculos; i++){
     		casilla[0] = rnd.nextInt(size_tablero_F);
     		casilla[1] = rnd.nextInt(size_tablero_C);
-    		while(tablero[casilla[0]][casilla[1]].get_type() == 3  || tablero[casilla[0]][casilla[1]].get_type() == 4) {
+    		while(tablero[casilla[0]][casilla[1]].get_type() == 5  || tablero[casilla[0]][casilla[1]].get_type() == 6) {
     			casilla[0] = rnd.nextInt(size_tablero_F);
     			casilla[1] = rnd.nextInt(size_tablero_C);
     		}
-    		cambiarCasilla(tablero[casilla[0]][casilla[1]],2); //De momento solo hay 1 tipo de obstaculo
+    		obstaculo = rnd.nextInt(4) + 1;
+    		cambiarCasilla(tablero[casilla[0]][casilla[1]],obstaculo); 
     	}
     }
     
@@ -125,24 +128,32 @@ public class Interfaz extends JPanel{
     public void reset() {
     	for(int i = 0; i < size_tablero_F; i++)
     		for(int j = 0; j < size_tablero_C; j++)
-    			cambiarCasilla(tablero[i][j], 1);
+    			cambiarCasilla(tablero[i][j], 7);
     }
     
     public void pintar(int x, int y, int type) {
     	int [] xy = new int [2];
-    	if(type == 3) {
-    		xy = buscaType(3);
+    	if(type == 5) {
+    		xy = buscaType(5);
     		if((xy[0] != -1) && (xy[0] != -1)) {
-    			cambiarCasilla(tablero[xy[0]][xy[1]],1);
+    			cambiarCasilla(tablero[xy[0]][xy[1]],7);
     		}
     	}
-    	if(type == 4) {
-    		xy = buscaType(4);
+    	if(type == 6) {
+    		xy = buscaType(6);
     		if((xy[0] != -1) && (xy[0] != -1)) {
-    			cambiarCasilla(tablero[xy[0]][xy[1]],1);
+    			cambiarCasilla(tablero[xy[0]][xy[1]],7);
     		}
     	}
     	cambiarCasilla(tablero[x][y], type);		
+    }
+    
+    public int get_porcentaje(){
+    	return porcentaje;
+    }
+    
+    public void set_porcentaje(int porcent){
+    	porcentaje = porcent;
     }
 
 }

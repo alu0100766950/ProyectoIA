@@ -3,21 +3,19 @@ package prueba;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-
-import javax.swing.ImageIcon;
-import javax.swing.JButton;
-import javax.swing.JPanel;
+import javax.swing.*;  
 
 @SuppressWarnings("serial")
 public class PanelIzq extends JPanel{
 
 	@SuppressWarnings("unused")
-	private ImageIcon p_reset, p_start, p_mine, p_soldier, p_puddle, p_stone;
-	private JButton b_random, b_reset, b_start, b_landmine, b_soldier, b_puddle, b_stone;
+	private ImageIcon p_reset, p_start, p_mine, p_soldier, p_puddle, p_stone, p_end, p_init;
+	private JButton b_random, b_reset, b_start, b_landmine, b_soldier, b_puddle, b_stone, b_end, b_init;
 	Interfaz inter;
+	Interfaz_true inter_t;
 	PanelIzq(Interfaz t_inter) {
 	inter = t_inter;
-	setLayout(new GridLayout(7,1));
+	setLayout(new GridLayout(9,1));
 	//int height = window.getHeight();
 	//int width = window.getWidth();
 	ImageIcon p_reset = new ImageIcon ("images/reset.png");
@@ -26,6 +24,8 @@ public class PanelIzq extends JPanel{
 	ImageIcon p_soldier = new ImageIcon ("images/soldier.png");
 	ImageIcon p_puddle = new ImageIcon ("images/puddle.png");
 	ImageIcon p_stone = new ImageIcon ("images/stone.png");
+	ImageIcon p_end = new ImageIcon ("images/boton_finish.png");
+	ImageIcon p_init = new ImageIcon ("images/play.png");
 	
 	//INSTANCIANDO BOTONES CON TEXTO
 	b_random = new JButton("Random");
@@ -35,14 +35,17 @@ public class PanelIzq extends JPanel{
 	b_puddle = new JButton(p_puddle);
 	b_stone = new JButton(p_stone);
 	b_landmine = new JButton(p_mine);
+	b_end = new JButton(p_end);
+	b_init = new JButton(p_init);
 	
 	//AÑADIENDO LISTENERS DEL BOTON
 	b_random.addActionListener(new ActionListener() {
 		
 		@Override
 		public void actionPerformed(ActionEvent e) {
+			BarraHorizontal app = new BarraHorizontal(inter);
 			inter.reset();
-			inter.obstaculosAleatorios(10);
+			inter.obstaculosAleatorios(inter.get_porcentaje());
 		}
 	});
 	b_reset.addActionListener(new ActionListener() {
@@ -56,7 +59,7 @@ public class PanelIzq extends JPanel{
 		
 		@Override
 		public void actionPerformed(ActionEvent e) {
-			inter.set_seleccion(3);
+			inter.set_seleccion(5);
 			
 		}
 	});
@@ -64,28 +67,42 @@ public class PanelIzq extends JPanel{
 		
 		@Override
 		public void actionPerformed(ActionEvent e) {
-			inter.set_seleccion(5);
+			inter.set_seleccion(2);
 		}
 	});
 	b_puddle.addActionListener(new ActionListener() {
 		
 		@Override
 		public void actionPerformed(ActionEvent e) {
-			inter.set_seleccion(6);
+			inter.set_seleccion(3);
 		}
 	});
 	b_stone.addActionListener(new ActionListener() {
 		
 		@Override
 		public void actionPerformed(ActionEvent e) {
-			inter.set_seleccion(7);
+			inter.set_seleccion(4);
 		}
 	});
 	b_landmine.addActionListener(new ActionListener() {
 		
 		@Override
 		public void actionPerformed(ActionEvent e) {
-			inter.set_seleccion(2);
+			inter.set_seleccion(1);
+		}
+	});
+	b_end.addActionListener(new ActionListener() {
+		
+		@Override
+		public void actionPerformed(ActionEvent e) {
+			inter.set_seleccion(6);
+		}
+	});
+	b_init.addActionListener(new ActionListener() {
+		
+		@Override
+		public void actionPerformed(ActionEvent e) {
+			//Añadir aquí la función de camino mínimo
 		}
 	});
 
@@ -103,9 +120,11 @@ public class PanelIzq extends JPanel{
 	add(b_random);
 	add(b_reset);
 	add(b_start);
+	add(b_end);
 	add(b_landmine);
 	add(b_soldier);
 	add(b_puddle);
 	add(b_stone);
+	add(b_init);
 	}
 }

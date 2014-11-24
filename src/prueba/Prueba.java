@@ -8,7 +8,7 @@ class Prueba {
 public static void main(String[] args)
 
       {
-		Interfaz_true faz = new Interfaz_true(10,10);
+		Interfaz_true faz = new Interfaz_true();
 		/*
 		Cuando funcione el tablero, debemos convertir esto en un layout de dos, el layout de la derecha mas grande porque es donde ira el tablero
 		y el de la izquierda mas pequeño porque es donde ira la parte de Saul (que nose nada de como le va la verdad).

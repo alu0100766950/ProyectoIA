@@ -13,7 +13,7 @@ public class Casilla extends JLabel implements MouseListener {
 	private static final long serialVersionUID = 1L;
 	//JLabel cas_t;
 	int type_t;	//1 = hierba, 2 = mina, 3 = inicio, 4 = final
-	private ImageIcon hierba,mina,inicio,fin;
+	private ImageIcon hierba,mina,inicio,fin,soldier,stone,water;
 	private Interfaz tablero;
 	private int [] casillaMarcada = new int [2];
 	
@@ -30,26 +30,38 @@ public class Casilla extends JLabel implements MouseListener {
 	
 	private void carga_imagenes(){
 		this.hierba = new ImageIcon("images/Grass.png");
-		this.mina = new ImageIcon("images/Mina.png"); 
-		this.inicio = new ImageIcon("images/Inicio.png");
-		this.fin = new ImageIcon("images/Fin.png");
+		this.mina = new ImageIcon("images/Mina_2.png"); 
+		this.inicio = new ImageIcon("images/Inicio_2.png");
+		this.fin = new ImageIcon("images/end.png");
+		this.soldier = new ImageIcon("images/Soldado.png");
+		this.stone = new ImageIcon("images/Piedra.png");
+		this.water = new ImageIcon("images/Agua.png");
 	}
 	
 	void actualizar(int type, int size_x, int size_y){
 		type_t = type;
 		carga_imagenes();
 		switch(type){
-		case 1: 
+		case 7: 
 			setIcon(new ImageIcon(hierba.getImage().getScaledInstance(size_x,size_y,Image.SCALE_DEFAULT)));
 			break;
-		case 2:
+		case 1:
 			setIcon(new ImageIcon(mina.getImage().getScaledInstance(size_x,size_y,Image.SCALE_DEFAULT)));
 			break;
-		case 3:
+		case 5:
 			setIcon(new ImageIcon(inicio.getImage().getScaledInstance(size_x,size_y,Image.SCALE_DEFAULT)));
 			break;
-		case 4:
+		case 6:
 			setIcon(new ImageIcon(fin.getImage().getScaledInstance(size_x,size_y,Image.SCALE_DEFAULT)));
+			break;
+		case 2:
+			setIcon(new ImageIcon(soldier.getImage().getScaledInstance(size_x,size_y,Image.SCALE_DEFAULT)));
+			break;
+		case 3:
+			setIcon(new ImageIcon(water.getImage().getScaledInstance(size_x,size_y,Image.SCALE_DEFAULT)));
+			break;
+		case 4:
+			setIcon(new ImageIcon(stone.getImage().getScaledInstance(size_x,size_y,Image.SCALE_DEFAULT)));
 			break;
 		}
 
@@ -62,14 +74,17 @@ public class Casilla extends JLabel implements MouseListener {
 	int get_type() {
 		return type_t;
 	}
-	/*JLabel get_cas() {
-		return cas_t;
-	}*/
 
 	@Override
 	public void mouseClicked(MouseEvent ev) {
-		this.setCasillaMarcada(tablero.getCoordenadas((Casilla)ev.getComponent())); 
-		tablero.pintar(casillaMarcada[0],casillaMarcada[1],tablero.getSeleccion());
+		if(ev.getButton() == MouseEvent.BUTTON2) {
+			this.setCasillaMarcada(tablero.getCoordenadas((Casilla)ev.getComponent())); 
+			tablero.pintar(casillaMarcada[0],casillaMarcada[1],7);
+			}
+		else {
+			this.setCasillaMarcada(tablero.getCoordenadas((Casilla)ev.getComponent())); 
+			tablero.pintar(casillaMarcada[0],casillaMarcada[1],tablero.getSeleccion());
+		}
 		//tablero.escribe()
 	}
 	
