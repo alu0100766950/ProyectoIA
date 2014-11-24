@@ -12,18 +12,26 @@ public class Casilla extends JLabel implements MouseListener {
 	 */
 	private static final long serialVersionUID = 1L;
 	//JLabel cas_t;
-	int type_t;	//1 = hierba, 2 = mina, 3 = inicio, 4 = final
+	int type_t;	
+	/*
+	 * 1 = mina
+	 * 2 = soldado,
+	 * 3 = agua, 
+	 * 4 = piedra
+	 * 5 = inicio
+	 * 6 = final
+	 * 7 = hierba
+	 */
 	private ImageIcon hierba,mina,inicio,fin,soldier,stone,water;
 	private Interfaz tablero;
 	private int [] casillaMarcada = new int [2];
 	
 	public Casilla(int type, int size_x, int size_y, Interfaz tab){
-		//cas_t = new JLabel();
+		
 		tablero = tab;
 		setBorder (BorderFactory.createLineBorder(Color.black));
 		actualizar(type, size_x, size_y);
-		
-		//System.out.println("Casilla creada");
+
 		addMouseListener(this);
 
 	}
@@ -85,7 +93,6 @@ public class Casilla extends JLabel implements MouseListener {
 			this.setCasillaMarcada(tablero.getCoordenadas((Casilla)ev.getComponent())); 
 			tablero.pintar(casillaMarcada[0],casillaMarcada[1],tablero.getSeleccion());
 		}
-		//tablero.escribe()
 	}
 	
 	@Override

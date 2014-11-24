@@ -17,7 +17,6 @@ public class Interfaz extends JPanel{
     private int size_tablero_C;
     private Casilla [][] tablero;
     private int seleccion;
-    private int porcentaje;
     
     public Interfaz(int size_f, int size_c) {
     	seleccion = 7;
@@ -49,6 +48,7 @@ public class Interfaz extends JPanel{
             }
             
 		}
+		validate();
     }
     
     public void cambiarCasilla(Casilla casilla, int type){
@@ -88,6 +88,7 @@ public class Interfaz extends JPanel{
     		obstaculo = rnd.nextInt(4) + 1;
     		cambiarCasilla(tablero[casilla[0]][casilla[1]],obstaculo); 
     	}
+    	validate();
     }
     
     void set_seleccion(int sel) {
@@ -146,14 +147,6 @@ public class Interfaz extends JPanel{
     		}
     	}
     	cambiarCasilla(tablero[x][y], type);		
-    }
-    
-    public int get_porcentaje(){
-    	return porcentaje;
-    }
-    
-    public void set_porcentaje(int porcent){
-    	porcentaje = porcent;
     }
 
 }

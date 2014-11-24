@@ -38,7 +38,7 @@ public class Interfaz_true extends JFrame{
 		final JTextField lineText = new JTextField(20);
 		panel.add(lineText);
 
-		/*JLabel columnLabel = new JLabel("Nº Colmnas",JLabel.CENTER);
+		/*JLabel columnLabel = new JLabel("N?? Colmnas",JLabel.CENTER);
 		panel.add(columnLabel);
 
 		final JTextField columnText = new JTextField(20);
@@ -71,9 +71,11 @@ public class Interfaz_true extends JFrame{
 				System.exit(0);
 			}
 		});
+		validate();
 	}
 		
 	void inicio (int[] a) {
+		validate();
  		inter = new Interfaz(a[0],a[1]);
 		s_panel = new PanelIzq(inter);
 		WIDTH = Toolkit.getDefaultToolkit().getScreenSize().width;

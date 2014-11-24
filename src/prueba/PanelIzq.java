@@ -12,8 +12,9 @@ public class PanelIzq extends JPanel{
 	private ImageIcon p_reset, p_start, p_mine, p_soldier, p_puddle, p_stone, p_end, p_init;
 	private JButton b_random, b_reset, b_start, b_landmine, b_soldier, b_puddle, b_stone, b_end, b_init;
 	Interfaz inter;
-	Interfaz_true inter_t;
-	PanelIzq(Interfaz t_inter) {
+	//Interfaz_true inter_t;
+	
+	public PanelIzq(Interfaz t_inter) {
 	inter = t_inter;
 	setLayout(new GridLayout(9,1));
 	//int height = window.getHeight();
@@ -38,14 +39,12 @@ public class PanelIzq extends JPanel{
 	b_end = new JButton(p_end);
 	b_init = new JButton(p_init);
 	
-	//AÑADIENDO LISTENERS DEL BOTON
+	//AÃ‘ADIENDO LISTENERS DEL BOTON
 	b_random.addActionListener(new ActionListener() {
 		
 		@Override
 		public void actionPerformed(ActionEvent e) {
 			BarraHorizontal app = new BarraHorizontal(inter);
-			inter.reset();
-			inter.obstaculosAleatorios(inter.get_porcentaje());
 		}
 	});
 	b_reset.addActionListener(new ActionListener() {
@@ -102,7 +101,7 @@ public class PanelIzq extends JPanel{
 		
 		@Override
 		public void actionPerformed(ActionEvent e) {
-			//Añadir aquí la función de camino mínimo
+			//AÃ±adir aquÃ­ la funciÃ³n de camino mÃ­nimo
 		}
 	});
 
@@ -126,5 +125,6 @@ public class PanelIzq extends JPanel{
 	add(b_puddle);
 	add(b_stone);
 	add(b_init);
+	validate();
 	}
 }

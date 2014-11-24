@@ -5,13 +5,14 @@ package prueba;
 import java.awt.GridLayout;
 import java.awt.event.*;
 
-	  public class BarraHorizontal extends JFrame implements AdjustmentListener {
-		  // application object fields   
+	  public class BarraHorizontal extends JFrame implements AdjustmentListener { 
 		  JScrollBar sbar;  
 		  JLabel label;
 		  Interfaz tablero;
+		  int porcentaje;
 		  
 		  public BarraHorizontal(Interfaz tab){
+			  porcentaje = 30;
 			  tablero = tab;
 			  setTitle("Random");
 			  setSize(300, 150);
@@ -30,11 +31,14 @@ import java.awt.event.*;
 				
 				@Override
 				public void actionPerformed(ActionEvent e) {
+					tablero.reset();
+					tablero.obstaculosAleatorios(porcentaje);
 					setVisible(false);
 				}
 		      });
 		      
 		      add(acept);
+		      validate();
 		      
 		      /*cancel.addActionListener(new ActionListener() {
 					
@@ -48,15 +52,10 @@ import java.awt.event.*;
     
 		  }
 	    
-	  private void setPreferredSize(int[] aux2) {
-			// TODO Auto-generated method stub
-			
-		}
-
 	public void adjustmentValueChanged(AdjustmentEvent e)
 	  {
 	   label.setText("Porcent = "+ e.getValue() + "%");
-	   tablero.set_porcentaje(e.getValue());
+	   porcentaje = e.getValue();
 	  }   
 
 	}

@@ -7,8 +7,9 @@ class Prueba {
 @SuppressWarnings("unused")
 public static void main(String[] args)
 
-      {
+    {
 		Interfaz_true faz = new Interfaz_true();
+		faz.validate();
 		/*
 		Cuando funcione el tablero, debemos convertir esto en un layout de dos, el layout de la derecha mas grande porque es donde ira el tablero
 		y el de la izquierda mas pequeño porque es donde ira la parte de Saul (que nose nada de como le va la verdad).
@@ -17,6 +18,6 @@ public static void main(String[] args)
 		valores en lugar de esos 10s, pero como todo lo demas, todo despues de dejar bien el tablero.
 		*/
 		
-      }
+    }
 }
 //Fin Clase1
