@@ -34,7 +34,7 @@ public class Interfaz extends JFrame{
         tablero = new Casilla [size_tablero_F][size_tablero_C];
 		for(int i = 0; i < size_tablero_F; i++) { 
             for(int j = 0; j < size_tablero_C; j++) {
-                tablero[i][j] = new Casilla(1,x,y);
+                tablero[i][j] = new Casilla(1,x,y,this);
                 // Las tres lineas siguientes las uso para intentar que la imagen se redimensione si mueves la ventana
                 
                /*
@@ -46,7 +46,7 @@ public class Interfaz extends JFrame{
                
                tablero[i][j].set_type(1, x, y); - esto seria para redimensionar la imagen si conseguimos algo con las linea de arriba
                */
-                add(tablero[i][j].get_cas());
+                add(tablero[i][j]);
             }
             
 		}
@@ -90,21 +90,22 @@ public class Interfaz extends JFrame{
     	}
     }
     public int[] getCoordenadas(Casilla casilla) {
+    	System.out.println("Pillando coordenadas");
         int [] coordenadas = new int[2];
-        for (int i=0; i < this.tablero.length; i++) {
-            for (int j=0; j < this.tablero.length; j++) {
+        for (int i=0; i < this.size_tablero_F; i++) {
+            for (int j=0; j < this.size_tablero_C; j++) {
                 if (this.tablero[i][j] == casilla) {
                     coordenadas[0] = i;
                     coordenadas[1] = j;
                 }
             }
         }
+        System.out.println("Coordenadas pilladas");
         return coordenadas;
     }
     public void pintar(int x, int y, int type) {
-    	int xa = WIDTH/size_tablero_F;
-        int ya = HEIGHT/size_tablero_C;
-    	tablero[x][y].actualizar(type,xa,ya);
+    	cambiarCasilla(tablero[x][y], type);
+    	//repaint();
     }
 
 }
