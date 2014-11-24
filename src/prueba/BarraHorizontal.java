@@ -31,7 +31,6 @@ import java.awt.event.*;
 				
 				@Override
 				public void actionPerformed(ActionEvent e) {
-					tablero.reset();
 					tablero.obstaculosAleatorios(porcentaje);
 					setVisible(false);
 				}

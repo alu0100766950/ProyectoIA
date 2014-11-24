@@ -56,6 +56,7 @@ public class Interfaz extends JPanel{
     }
     
     public void obstaculosAleatorios(int porcentaje){
+		reset();
     	int numObstaculos = (porcentaje * size_tablero_F * size_tablero_C) / 100;
     	
     	
