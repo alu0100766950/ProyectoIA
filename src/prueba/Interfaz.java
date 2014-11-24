@@ -1,32 +1,30 @@
 package prueba;
 
 import javax.swing.*;
+
 import java.awt.*;
 import java.util.Random;
 
 //Aqui elimine unos cuantos import que te sobraban porque ya tenias esos dos.
 
-
+;
 //@SuppressWarnings("unused")
-public class Interfaz extends JFrame{
+public class Interfaz extends JPanel{
     private static final long serialVersionUID = 1L;
     private int WIDTH;
     private int HEIGHT;
     private int size_tablero_F;
     private int size_tablero_C;
     private Casilla [][] tablero;
+    private int seleccion;
     
     public Interfaz(int size_f, int size_c) {
+    	seleccion = 4;
     	size_tablero_F = size_f;
     	size_tablero_C = size_c;
-    	WIDTH = Toolkit.getDefaultToolkit().getScreenSize().width;
-    	HEIGHT = Toolkit.getDefaultToolkit().getScreenSize().height;
-        String title = "Tablero2";
-        setTitle(title);
-        setSize(WIDTH, HEIGHT);
-        setVisible(true);
-        setDefaultCloseOperation(EXIT_ON_CLOSE);
-        setLayout(new GridLayout(size_tablero_F,size_tablero_C));
+    	WIDTH = (Toolkit.getDefaultToolkit().getScreenSize().width);
+    	HEIGHT = (Toolkit.getDefaultToolkit().getScreenSize().height);
+    	setLayout(new GridLayout(size_tablero_F,size_tablero_C));
         int x = WIDTH/size_tablero_F;
         int y = HEIGHT/size_tablero_C;
 
@@ -50,7 +48,6 @@ public class Interfaz extends JFrame{
             }
             
 		}
-		validate();
     }
     
     public void cambiarCasilla(Casilla casilla, int type){
@@ -89,8 +86,15 @@ public class Interfaz extends JFrame{
     		cambiarCasilla(tablero[casilla[0]][casilla[1]],2); //De momento solo hay 1 tipo de obstaculo
     	}
     }
+    
+    void set_seleccion(int sel) {
+    	seleccion = sel;
+    }
+    int getSeleccion() {
+    	return seleccion;
+    }
+    
     public int[] getCoordenadas(Casilla casilla) {
-    	System.out.println("Pillando coordenadas");
         int [] coordenadas = new int[2];
         for (int i=0; i < this.size_tablero_F; i++) {
             for (int j=0; j < this.size_tablero_C; j++) {
@@ -100,12 +104,45 @@ public class Interfaz extends JFrame{
                 }
             }
         }
-        System.out.println("Coordenadas pilladas");
         return coordenadas;
     }
+    
+    public int[] buscaType(int type) {
+    	int [] aux = new int [2];
+    	for(int i = 0; i < size_tablero_F; i++)
+    		for(int j = 0; j < size_tablero_C; j++)
+    			if(tablero[i][j].get_type() == type) {
+    			aux [0] = i;
+    			aux [1] = j;
+    			return aux;
+    			}
+    	aux [0] = -1;
+		aux [1] = -1;
+		return aux;
+    }
+    
+    
+    public void reset() {
+    	for(int i = 0; i < size_tablero_F; i++)
+    		for(int j = 0; j < size_tablero_C; j++)
+    			cambiarCasilla(tablero[i][j], 1);
+    }
+    
     public void pintar(int x, int y, int type) {
-    	cambiarCasilla(tablero[x][y], type);
-    	//repaint();
+    	int [] xy = new int [2];
+    	if(type == 3) {
+    		xy = buscaType(3);
+    		if((xy[0] != -1) && (xy[0] != -1)) {
+    			cambiarCasilla(tablero[xy[0]][xy[1]],1);
+    		}
+    	}
+    	if(type == 4) {
+    		xy = buscaType(4);
+    		if((xy[0] != -1) && (xy[0] != -1)) {
+    			cambiarCasilla(tablero[xy[0]][xy[1]],1);
+    		}
+    	}
+    	cambiarCasilla(tablero[x][y], type);		
     }
 
 }

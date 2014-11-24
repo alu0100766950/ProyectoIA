@@ -69,7 +69,7 @@ public class Casilla extends JLabel implements MouseListener {
 	@Override
 	public void mouseClicked(MouseEvent ev) {
 		this.setCasillaMarcada(tablero.getCoordenadas((Casilla)ev.getComponent())); 
-		tablero.pintar(casillaMarcada[0],casillaMarcada[1],2);
+		tablero.pintar(casillaMarcada[0],casillaMarcada[1],tablero.getSeleccion());
 		//tablero.escribe()
 	}
 	
