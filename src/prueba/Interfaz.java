@@ -57,6 +57,15 @@ public class Interfaz extends JPanel{
     
     public void obstaculosAleatorios(int porcentaje){
     	int numObstaculos = (porcentaje * size_tablero_F * size_tablero_C) / 100;
+    	
+    	
+    	if(porcentaje == 100)
+    		numObstaculos = numObstaculos - 2;
+    	else
+    		if(porcentaje == 99)
+    			numObstaculos = numObstaculos - 1;
+    	
+    	
     	int[] casilla = new int[2];
     	int obstaculo;
     	Random rnd = new Random();
@@ -81,7 +90,7 @@ public class Interfaz extends JPanel{
     	for(int i=0; i<numObstaculos; i++){
     		casilla[0] = rnd.nextInt(size_tablero_F);
     		casilla[1] = rnd.nextInt(size_tablero_C);
-    		while(tablero[casilla[0]][casilla[1]].get_type() == 5  || tablero[casilla[0]][casilla[1]].get_type() == 6) {
+    		while(tablero[casilla[0]][casilla[1]].get_type() != 7) {
     			casilla[0] = rnd.nextInt(size_tablero_F);
     			casilla[1] = rnd.nextInt(size_tablero_C);
     		}
