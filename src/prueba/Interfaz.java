@@ -1,14 +1,9 @@
 package prueba;
 
 import javax.swing.*;
-
 import java.awt.*;
 import java.util.Random;
 
-//Aqui elimine unos cuantos import que te sobraban porque ya tenias esos dos.
-
-;
-//@SuppressWarnings("unused")
 public class Interfaz extends JPanel{
     private static final long serialVersionUID = 1L;
     private int WIDTH;
@@ -33,17 +28,6 @@ public class Interfaz extends JPanel{
 		for(int i = 0; i < size_tablero_F; i++) { 
             for(int j = 0; j < size_tablero_C; j++) {
                 tablero[i][j] = new Casilla(7,x,y,this);
-                // Las tres lineas siguientes las uso para intentar que la imagen se redimensione si mueves la ventana
-                
-               /*
-               x = tablero[i][j].getWidth();    - intente eso (que hace falta ponerle a la clase casilla que herede de jframe) 
-                                                  y tablero[i][j].get_cas().getWidth() (que no haria falta que casilla herede de nadie, como esta ahora)
-                                                  en ambos caso devuelve 0 el get. Tambien lo probe con .getX() y .getHorizontalNOSEQUE
-               
-               y = tablero[i][j].getHeight();   - lo mismo que arriba, pero con la componentes Y, Height y Vertical.
-               
-               tablero[i][j].set_type(1, x, y); - esto seria para redimensionar la imagen si conseguimos algo con las linea de arriba
-               */
                 add(tablero[i][j]);
             }
             
@@ -160,4 +144,3 @@ public class Interfaz extends JPanel{
     }
 
 }
-//Fin Interfaz

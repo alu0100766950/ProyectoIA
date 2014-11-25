@@ -7,11 +7,7 @@ import java.awt.event.MouseListener;
 import javax.swing.*;
 
 public class Casilla extends JLabel implements MouseListener {
-	/**
-	 * 
-	 */
 	private static final long serialVersionUID = 1L;
-	//JLabel cas_t;
 	int type_t;	
 	/*
 	 * 1 = mina

@@ -17,8 +17,6 @@ public class PanelIzq extends JPanel{
 	public PanelIzq(Interfaz t_inter) {
 	inter = t_inter;
 	setLayout(new GridLayout(9,1));
-	//int height = window.getHeight();
-	//int width = window.getWidth();
 	ImageIcon p_reset = new ImageIcon ("images/reset.png");
 	ImageIcon p_start = new ImageIcon ("images/start.png");
 	ImageIcon p_mine = new ImageIcon ("images/landmine.png");
@@ -39,7 +37,7 @@ public class PanelIzq extends JPanel{
 	b_end = new JButton(p_end);
 	b_init = new JButton(p_init);
 	
-	//AÃ‘ADIENDO LISTENERS DEL BOTON
+	//AGREGANDO LISTENERS DEL BOTON
 	b_random.addActionListener(new ActionListener() {
 		
 		@Override
@@ -102,20 +100,10 @@ public class PanelIzq extends JPanel{
 		
 		@Override
 		public void actionPerformed(ActionEvent e) {
-			//AÃ±adir aquÃ­ la funciÃ³n de camino mÃ­nimo
+			//Aqui funcion de camino minimo
 		}
 	});
 
-	
-	//POSICIONANDO LOS OBJETOS
-	/*b_random.setBounds(10, 340, 150, 50);
-	b_reset.setBounds(10, 420, 150, 50);
-	b_start.setBounds(10, 500, 150, 50);
-	b_landmine.setBounds(10,20, 150, 50);
-	b_soldier.setBounds(10,100, 150, 50);
-	b_puddle.setBounds(10,180, 150, 50);
-	b_stone.setBounds(10,260, 150, 50);*/
-	
 	//addon buttons to the window
 	add(b_random);
 	add(b_reset);
