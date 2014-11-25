@@ -26,15 +26,22 @@ public class Interfaz_true extends JFrame{
 		validate();
 
 		JPanel panel = new JPanel();
-		panel.setLayout(new GridLayout(2,2));
+		panel.setLayout(new GridLayout(3,2));
 
 		final int [] aux = new int [2];
 		 
-		JLabel lineLabel = new JLabel("Dimensiones",JLabel.CENTER);
+		JLabel lineLabel = new JLabel("NUMERO FILAS",JLabel.CENTER);
 		panel.add(lineLabel);
 
 		final JTextField lineText = new JTextField(20);
 		panel.add(lineText);
+		
+		JLabel columnLabel = new JLabel("NUMERO COLUMNAS",JLabel.CENTER);
+		panel.add(columnLabel);
+
+		final JTextField columnText = new JTextField(20);
+		panel.add(columnText);
+		
 		
 		JButton closeButton = new JButton("Cancelar");
 		panel.add(closeButton);
@@ -45,13 +52,14 @@ public class Interfaz_true extends JFrame{
 		
 		aux[0] = 10;
 		aux[1] = 10;
+		panel.setVisible(true);
 		
 		acceptButton.addActionListener(new ActionListener() {
 			
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				aux[0] = Integer.parseInt(lineText.getText());
-				aux[1] = Integer.parseInt(lineText.getText());
+				aux[1] = Integer.parseInt(columnText.getText());
 				inicio(aux);
 				frame.setVisible(false);
 			}

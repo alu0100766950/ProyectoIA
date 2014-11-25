@@ -44,10 +44,10 @@ public class Interfaz extends JPanel{
     	int numObstaculos = (porcentaje * size_tablero_F * size_tablero_C) / 100;
     	
     	
-    	if(porcentaje == 100)
+    	if(numObstaculos >= size_tablero_C * size_tablero_F)
     		numObstaculos = numObstaculos - 2;
     	else
-    		if(porcentaje == 99)
+    		if(numObstaculos >= size_tablero_C * size_tablero_F - 1)
     			numObstaculos = numObstaculos - 1;
     	
     	
