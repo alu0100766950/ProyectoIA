@@ -44,6 +44,7 @@ public class PanelIzq extends JPanel{
 		
 		@Override
 		public void actionPerformed(ActionEvent e) {
+			@SuppressWarnings("unused")
 			BarraHorizontal app = new BarraHorizontal(inter);
 		}
 	});

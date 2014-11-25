@@ -50,17 +50,8 @@ public class Casilla extends JLabel implements MouseListener {
 		type_t = type;
 		carga_imagenes();
 		switch(type){
-		case 7: 
-			setIcon(new ImageIcon(hierba.getImage().getScaledInstance(size_x,size_y,Image.SCALE_DEFAULT)));
-			break;
 		case 1:
 			setIcon(new ImageIcon(mina.getImage().getScaledInstance(size_x,size_y,Image.SCALE_DEFAULT)));
-			break;
-		case 5:
-			setIcon(new ImageIcon(inicio.getImage().getScaledInstance(size_x,size_y,Image.SCALE_DEFAULT)));
-			break;
-		case 6:
-			setIcon(new ImageIcon(fin.getImage().getScaledInstance(size_x,size_y,Image.SCALE_DEFAULT)));
 			break;
 		case 2:
 			setIcon(new ImageIcon(soldier.getImage().getScaledInstance(size_x,size_y,Image.SCALE_DEFAULT)));
@@ -70,6 +61,15 @@ public class Casilla extends JLabel implements MouseListener {
 			break;
 		case 4:
 			setIcon(new ImageIcon(stone.getImage().getScaledInstance(size_x,size_y,Image.SCALE_DEFAULT)));
+			break;
+		case 5:
+			setIcon(new ImageIcon(inicio.getImage().getScaledInstance(size_x,size_y,Image.SCALE_DEFAULT)));
+			break;
+		case 6:
+			setIcon(new ImageIcon(fin.getImage().getScaledInstance(size_x,size_y,Image.SCALE_DEFAULT)));
+			break;
+		case 7: 
+			setIcon(new ImageIcon(hierba.getImage().getScaledInstance(size_x,size_y,Image.SCALE_DEFAULT)));
 			break;
 		}
 
@@ -84,16 +84,7 @@ public class Casilla extends JLabel implements MouseListener {
 	}
 
 	@Override
-	public void mouseClicked(MouseEvent ev) {
-		if(ev.getButton() == MouseEvent.BUTTON2) {
-			this.setCasillaMarcada(tablero.getCoordenadas((Casilla)ev.getComponent())); 
-			tablero.pintar(casillaMarcada[0],casillaMarcada[1],7);
-			}
-		else {
-			this.setCasillaMarcada(tablero.getCoordenadas((Casilla)ev.getComponent())); 
-			tablero.pintar(casillaMarcada[0],casillaMarcada[1],tablero.getSeleccion());
-		}
-	}
+	public void mouseClicked(MouseEvent ev) {}
 	
 	@Override
 	public void mouseEntered(MouseEvent ev) {}
@@ -102,7 +93,16 @@ public class Casilla extends JLabel implements MouseListener {
 	public void mouseExited(MouseEvent ev) {}
 	
 	@Override
-	public void mousePressed(MouseEvent ev) {}
+	public void mousePressed(MouseEvent ev) {
+		if((ev.getButton() == MouseEvent.BUTTON3) || (ev.getButton() == MouseEvent.BUTTON2)) {
+			this.setCasillaMarcada(tablero.getCoordenadas((Casilla)ev.getComponent())); 
+			tablero.pintar(casillaMarcada[0],casillaMarcada[1],7);
+			}
+		else {
+			this.setCasillaMarcada(tablero.getCoordenadas((Casilla)ev.getComponent())); 
+			tablero.pintar(casillaMarcada[0],casillaMarcada[1],tablero.getSeleccion());
+		}
+	}
 	
 	@Override
 	public void mouseReleased(MouseEvent ev) {}

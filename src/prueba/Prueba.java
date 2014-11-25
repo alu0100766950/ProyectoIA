@@ -4,7 +4,6 @@ package prueba;
 //@SuppressWarnings("unused")
 class Prueba {
 	
-@SuppressWarnings("unused")
 public static void main(String[] args)
 
     {

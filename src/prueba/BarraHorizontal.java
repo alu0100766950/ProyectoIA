@@ -1,11 +1,12 @@
 package prueba;
 
 	import javax.swing.*;  
-	
+
 import java.awt.GridLayout;
 import java.awt.event.*;
 
-	  public class BarraHorizontal extends JFrame implements AdjustmentListener { 
+	  @SuppressWarnings("serial")
+	public class BarraHorizontal extends JFrame implements AdjustmentListener { 
 		  JScrollBar sbar;  
 		  JLabel label;
 		  Interfaz tablero;
