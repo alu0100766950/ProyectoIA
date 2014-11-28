@@ -1,7 +1,9 @@
 package prueba;
 
 import javax.swing.*;
+
 import java.awt.*;
+import java.util.LinkedList;
 import java.util.Random;
 
 public class Interfaz extends JPanel{
@@ -30,7 +32,6 @@ public class Interfaz extends JPanel{
                 tablero[i][j] = new Casilla(7,x,y,this);
                 add(tablero[i][j]);
             }
-            
 		}
 		validate();
     }
@@ -42,19 +43,15 @@ public class Interfaz extends JPanel{
     public void obstaculosAleatorios(int porcentaje){
 		reset();
     	int numObstaculos = (porcentaje * size_tablero_F * size_tablero_C) / 100;
-    	
-    	
     	if(numObstaculos >= size_tablero_C * size_tablero_F)
     		numObstaculos = numObstaculos - 2;
     	else
     		if(numObstaculos >= size_tablero_C * size_tablero_F - 1)
     			numObstaculos = numObstaculos - 1;
-    	
-    	
     	int[] casilla = new int[2];
     	int obstaculo;
     	Random rnd = new Random();
-    	
+
     	//GENERAMOS EL INICIO
     	casilla[0] = rnd.nextInt(size_tablero_F);
 		casilla[1] = rnd.nextInt(size_tablero_C);
@@ -142,5 +139,24 @@ public class Interfaz extends JPanel{
     	}
     	cambiarCasilla(tablero[x][y], type);		
     }
-
+    public void caminoMinimo() {
+    	int [] direccion = new int [2];
+    	direccion = buscaType(5); 
+    	LinkedList<Casilla> abierta = new LinkedList<Casilla>();
+    	LinkedList<Casilla> cerrada = new LinkedList<Casilla>();
+    	abierta.add(tablero[direccion[0]][direccion[1]]);
+    	//f'(INICIAL) := h'(INICIAL) -> Pseudocódigo que no se que significa para este problema
+    	while(!abierta.isEmpty()) {
+    		//Aquí va el código
+    		/*extraer MEJORNODO de ABIERTOS con f' mí­nima 
+    		// cola de prioridad 
+    		mover MEJORNODO de ABIERTOS a CERRADOS 
+    		si MEJORNODO contiene estado_objetivo entonces 
+    		SOLUCION_ENCONTRADA := TRUE 
+    		si no 
+    		generar SUCESORES de MEJORNODO 
+    		para cada SUCESOR hacer TRATAR_SUCESOR 
+    		hasta SOLUCION_ENCONTRADA o FALLO*/
+    	}
+    }
 }
