@@ -8,7 +8,7 @@ import javax.swing.*;
 
 public class Casilla extends JLabel implements MouseListener {
 	private static final long serialVersionUID = 1L;
-	int type_t;	
+	int type_t;
 	/*
 	 * 1 = mina
 	 * 2 = soldado,
