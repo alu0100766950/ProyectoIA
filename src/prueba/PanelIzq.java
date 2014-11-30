@@ -1,5 +1,6 @@
 package prueba;
 
+import java.awt.Dimension;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -106,21 +107,24 @@ public class PanelIzq extends JPanel{
 			int [] fin = inter.buscaType(6);
 			
 			if(inicio[0] == -1 || fin[0] == -1){
-				JOptionPane.showOptionDialog(new JOptionPane(), "Para iniciar la busqueda debe haber un START y un FINISH", "Error", 
-					JOptionPane.ERROR_MESSAGE, JOptionPane.ERROR_MESSAGE, null, new Object[]{" OK "},"Cancelar");
+				mensageError("Para iniciar la busqueda debe haber un START y un FINISH");
 			}
 			else{
 				AEstrella algoritmo = new AEstrella(inter);
-				System.out.println("DESPUES DE INIVIAR AESTRELLA");
-				LinkedList<int[]> camino = algoritmo.encontrarCamino(inicio, fin);
+				LinkedList<Dimension> camino = algoritmo.encontrarCamino(inicio, fin);
 				if (camino != null){
 					int indice = 0;
 					int[] posicion = new int[2];
 					while(camino.size() > indice){
-						posicion = camino.get(indice);
-						inter.pintar(posicion[0], posicion[1], 8);
+						posicion[0] = camino.get(indice).width;
+						posicion[1] = camino.get(indice).height;
+						if(inter.getCasilla(posicion).get_type() != 5 && inter.getCasilla(posicion).get_type() != 6)
+							inter.pintar(posicion[0], posicion[1], 8);
 						indice++;
 					}
+				}
+				else{
+					mensageError("No hay camino de START a FINISH");
 				}
 			}
 		}
@@ -137,5 +141,10 @@ public class PanelIzq extends JPanel{
 	add(b_stone);
 	add(b_init);
 	validate();
+	}
+	
+	public void mensageError(String mensage){
+		JOptionPane.showOptionDialog(new JOptionPane(), mensage, "Error", 
+				JOptionPane.ERROR_MESSAGE, JOptionPane.ERROR_MESSAGE, null, new Object[]{" OK "},"Cancelar");
 	}
 }

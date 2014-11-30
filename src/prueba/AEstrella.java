@@ -1,17 +1,18 @@
 package prueba;
 
+import java.awt.Dimension;
 import java.util.LinkedList;
 
 public class AEstrella {
 private LinkedList<Nodo>listaAbierta;
 //Esta segunda lista no la ponemos de Nodos para poder usar el Contains despues
-private LinkedList<int[]>listaCerrada;
+private LinkedList<Dimension>listaCerrada;
 public Interfaz tablero;
 
 //Constructor
 public AEstrella(Interfaz tablero_){
 	listaAbierta = new LinkedList<Nodo>();
-	listaCerrada = new LinkedList<int[]>();
+	listaCerrada = new LinkedList<Dimension>();
 	tablero = tablero_;
 }
 
@@ -19,31 +20,29 @@ private void ponerNodoAListaAbierto(Nodo nodo){
 	int indice = 0;
 	while ((listaAbierta.size() > indice) && (nodo.costoTotal < listaAbierta.get(indice).costoTotal)){
 		indice++;
-		System.out.println("while de poner nodo");
 	}
-	System.out.println("a");
+	
 		listaAbierta.add(indice,nodo);
-	System.out.println("B");
 }
 
-public LinkedList<int[]> encontrarCamino(int[] posCasillaInicial, int[] posCasillaFinal){
+public LinkedList<Dimension> encontrarCamino(int[] posCasillaInicial, int[] posCasillaFinal){
 	if(tablero == null)
 		return null;
 	
 	listaAbierta.clear();
 	listaCerrada.clear();
 	
-	Nodo nodoInicial = new Nodo(null, null,this.tablero.buscaType(5),0);
-	Nodo nodoFinal = new Nodo(null, null,this.tablero.buscaType(6),0);
-	System.out.println("c");
+	Nodo nodoInicial = new Nodo(null, null,posCasillaInicial,0);
+	Nodo nodoFinal = new Nodo(null, null,posCasillaFinal,0);
+	
 	ponerNodoAListaAbierto(nodoInicial);
-	System.out.println("d");
+	
 	while(listaAbierta.size() > 0){
 		Nodo nodoActual = listaAbierta.get(listaAbierta.size() - 1);
 		
 		//Si el nodo es el final creamos el camino minimo
 		if(nodoActual.mismoNodo(nodoFinal)){
-			LinkedList<int[]>mejorCamino = new LinkedList<int[]>();
+			LinkedList<Dimension>mejorCamino = new LinkedList<Dimension>();
 			while(nodoActual != null){
 				mejorCamino.add(0,nodoActual.getPosicion());
 				nodoActual = nodoActual.nodoPadre;
@@ -61,7 +60,6 @@ public LinkedList<int[]> encontrarCamino(int[] posCasillaInicial, int[] posCasil
 			if(!listaCerrada.contains(nodosAdyacentes.get(indice).getPosicion())){
 				//si ya esta en la listaAbierta
 				if(listaAbierta.contains(nodosAdyacentes.get(indice))){
-					//if(nodosAdyacentes.get(indice).costoG >= nodosAdyacentes.get(indice).costoTotal){
 					if(nodosAdyacentes.get(indice).costoG >= nodoActual.costoG){
 						indice++;
 						continue; //pasa a la siguiente interaccion del while

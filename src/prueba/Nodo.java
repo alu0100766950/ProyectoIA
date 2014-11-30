@@ -1,5 +1,7 @@
 package prueba;
 
+import java.awt.Dimension;
+
 public class Nodo {
 public Nodo nodoPadre;  //Nodo del que viene
 public Nodo nodoFinal;  //Nodo destino
@@ -37,8 +39,10 @@ public int getY(){
 	return this.posicion[1];
 }
 
-public int[] getPosicion(){
-	return this.posicion;
+public Dimension getPosicion(){
+	Dimension aux = new Dimension();
+	aux.setSize(this.posicion[0],this.posicion[1]);
+	return aux;
 }
 
 //Comprueba si un nodo es igual a este
