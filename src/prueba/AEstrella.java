@@ -21,7 +21,6 @@ private void ponerNodoAListaAbierto(Nodo nodo){
 	while ((listaAbierta.size() > indice) && (nodo.costoTotal < listaAbierta.get(indice).costoTotal)){
 		indice++;
 	}
-	
 		listaAbierta.add(indice,nodo);
 }
 
