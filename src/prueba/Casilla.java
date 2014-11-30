@@ -17,8 +17,9 @@ public class Casilla extends JLabel implements MouseListener {
 	 * 5 = inicio
 	 * 6 = final
 	 * 7 = hierba
+	 * 8 = paso el robot
 	 */
-	private ImageIcon hierba,mina,inicio,fin,soldier,stone,water;
+	private ImageIcon hierba,mina,inicio,fin,soldier,stone,water,camino;
 	private Interfaz tablero;
 	private int [] casillaMarcada = new int [2];
 	
@@ -40,6 +41,7 @@ public class Casilla extends JLabel implements MouseListener {
 		this.soldier = new ImageIcon("images/Soldado.png");
 		this.stone = new ImageIcon("images/Piedra.png");
 		this.water = new ImageIcon("images/Agua.png");
+		this.camino = new ImageIcon("images/camino.png");
 	}
 	
 	void actualizar(int type, int size_x, int size_y){
@@ -67,6 +69,9 @@ public class Casilla extends JLabel implements MouseListener {
 		case 7: 
 			setIcon(new ImageIcon(hierba.getImage().getScaledInstance(size_x,size_y,Image.SCALE_DEFAULT)));
 			break;
+		case 8: 
+			setIcon(new ImageIcon(camino.getImage().getScaledInstance(size_x,size_y,Image.SCALE_DEFAULT)));
+			break;
 		}
 
 	}
@@ -77,6 +82,26 @@ public class Casilla extends JLabel implements MouseListener {
 	
 	int get_type() {
 		return type_t;
+	}
+	
+	public int getCosto(){
+		switch(type_t){
+		case 1:
+			return 10000; //Como infinito
+		case 2:
+			return 10000; //como infinito
+		case 3:
+			return 10;
+		case 4:
+			return 20;
+		case 5:
+			return 1; //En la casilla inicial hay hierba
+		case 6:
+			return 1; //En la casilla final hay hierba
+		case 7: 
+			return 1;
+		}
+		return 10000; //esto es solo para que no me de error la funcion por el return
 	}
 
 	@Override

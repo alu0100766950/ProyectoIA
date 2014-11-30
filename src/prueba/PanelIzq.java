@@ -3,6 +3,8 @@ package prueba;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.LinkedList;
+
 import javax.swing.*;  
 
 @SuppressWarnings("serial")
@@ -100,7 +102,27 @@ public class PanelIzq extends JPanel{
 		
 		@Override
 		public void actionPerformed(ActionEvent e) {
-			//Aqui funcion de camino minimo
+			int [] inicio =inter.buscaType(5);
+			int [] fin = inter.buscaType(6);
+			
+			if(inicio[0] == -1 || fin[0] == -1){
+				JOptionPane.showOptionDialog(new JOptionPane(), "Para iniciar la busqueda debe haber un START y un FINISH", "Error", 
+					JOptionPane.ERROR_MESSAGE, JOptionPane.ERROR_MESSAGE, null, new Object[]{" OK "},"Cancelar");
+			}
+			else{
+				AEstrella algoritmo = new AEstrella(inter);
+				System.out.println("DESPUES DE INIVIAR AESTRELLA");
+				LinkedList<int[]> camino = algoritmo.encontrarCamino(inicio, fin);
+				if (camino != null){
+					int indice = 0;
+					int[] posicion = new int[2];
+					while(camino.size() > indice){
+						posicion = camino.get(indice);
+						inter.pintar(posicion[0], posicion[1], 8);
+						indice++;
+					}
+				}
+			}
 		}
 	});
 

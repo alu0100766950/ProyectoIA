@@ -10,8 +10,8 @@ public class Interfaz extends JPanel{
     private static final long serialVersionUID = 1L;
     private int WIDTH;
     private int HEIGHT;
-    private int size_tablero_F;
-    private int size_tablero_C;
+    public int size_tablero_F;
+    public int size_tablero_C;
     private Casilla [][] tablero;
     private int seleccion;
     
@@ -100,6 +100,10 @@ public class Interfaz extends JPanel{
             }
         }
         return coordenadas;
+    }
+    
+    public Casilla getCasilla(int[] coordenadas){
+    	return tablero[coordenadas[0]][coordenadas[1]];
     }
     
     public int[] buscaType(int type) {
