@@ -19,7 +19,7 @@ public class Casilla extends JLabel implements MouseListener {
 	 * 7 = hierba
 	 * 8 = paso el robot
 	 */
-	private ImageIcon hierba,mina,inicio,fin,soldier,stone,water,camino;
+	private ImageIcon mina,inicio,fin,soldier,stone,water,camino;
 	private Interfaz tablero;
 	private int [] casillaMarcada = new int [2];
 	
@@ -34,7 +34,6 @@ public class Casilla extends JLabel implements MouseListener {
 	}
 	
 	private void carga_imagenes(){
-		this.hierba = new ImageIcon("images/Grass.png");
 		this.mina = new ImageIcon("images/Mina_2.png"); 
 		this.inicio = new ImageIcon("images/Inicio_2.png");
 		this.fin = new ImageIcon("images/end.png");
@@ -67,7 +66,8 @@ public class Casilla extends JLabel implements MouseListener {
 			setIcon(new ImageIcon(fin.getImage().getScaledInstance(size_x,size_y,Image.SCALE_DEFAULT)));
 			break;
 		case 7: 
-			setIcon(new ImageIcon(hierba.getImage().getScaledInstance(size_x,size_y,Image.SCALE_DEFAULT)));
+			//setIcon(new ImageIcon(hierba.getImage().getScaledInstance(size_x,size_y,Image.SCALE_DEFAULT)));
+			setIcon(null);
 			break;
 		case 8: 
 			setIcon(new ImageIcon(camino.getImage().getScaledInstance(size_x,size_y,Image.SCALE_DEFAULT)));
