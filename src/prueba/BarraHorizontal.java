@@ -25,11 +25,9 @@ import java.awt.event.*;
 		      label = new JLabel();
 		      add(this.label);
 		      setVisible(true);
-		      JButton acept = new JButton("Aceptar");
-		      //Button cancel = new JButton("Cancelar");
 		      
+		      JButton acept = new JButton("Aceptar");
 		      acept.addActionListener(new ActionListener() {
-				
 				@Override
 				public void actionPerformed(ActionEvent e) {
 					tablero.obstaculosAleatorios(porcentaje);
@@ -39,17 +37,6 @@ import java.awt.event.*;
 		      
 		      add(acept);
 		      validate();
-		      
-		      /*cancel.addActionListener(new ActionListener() {
-					
-					@Override
-					public void actionPerformed(ActionEvent e) {
-						tablero.set_porcentaje(0);
-						setVisible(false);
-						
-					}
-				});*/
-    
 		  }
 	    
 	public void adjustmentValueChanged(AdjustmentEvent e)

@@ -106,5 +106,4 @@ public @interface Funciones {
     	return abierta.getFirst();	//Lo he puesto para que no me molesten los warning pero no se si va aquí
     }
     //Fin algoritmo busqueda
-}
-*/
+}*/

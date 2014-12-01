@@ -17,7 +17,7 @@ public class Interfaz extends JPanel{
     
     public Interfaz(int size_f, int size_c) {
     	setOpaque(true);
-    	ImageIcon aux = new ImageIcon("images/grass_ext1.png");
+    	ImageIcon aux = new ImageIcon("images/grass_final.jpg");
     	imagen = aux.getImage();
     	seleccion = 7;
     	size_tablero_F = size_f;
@@ -26,14 +26,12 @@ public class Interfaz extends JPanel{
     	HEIGHT = (Toolkit.getDefaultToolkit().getScreenSize().height);
     	setSize(WIDTH,HEIGHT);
     	setLayout(new GridLayout(size_tablero_F,size_tablero_C));
-        int x = WIDTH/size_tablero_F;
-        int y = HEIGHT/size_tablero_C;
 
         //Inicialización inicial del tablero lleno de hierba
         tablero = new Casilla [size_tablero_F][size_tablero_C];
 		for(int i = 0; i < size_tablero_F; i++) { 
             for(int j = 0; j < size_tablero_C; j++) {
-                tablero[i][j] = new Casilla(7,x,y,this);
+                tablero[i][j] = new Casilla(7,this);
                 add(tablero[i][j]);
             }
 		}

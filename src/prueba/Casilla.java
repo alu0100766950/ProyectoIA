@@ -19,15 +19,13 @@ public class Casilla extends JLabel implements MouseListener {
 	 * 7 = hierba
 	 * 8 = paso el robot
 	 */
-	private ImageIcon mina,inicio,fin,soldier,stone,water,camino;
+	private ImageIcon mina,inicio,fin,soldier,stone,water,camino,caminoPiedra,caminoAgua;
 	private Interfaz tablero;
 	private int [] casillaMarcada = new int [2];
 	
-	public Casilla(int type, int size_x, int size_y, Interfaz tab){
-		
+	public Casilla(int type, Interfaz tab){
 		tablero = tab;
-		setBorder (BorderFactory.createLineBorder(Color.black));
-		actualizar(type, size_x, size_y);
+		actualizar(type);
 
 		addMouseListener(this);
 
@@ -41,42 +39,55 @@ public class Casilla extends JLabel implements MouseListener {
 		this.stone = new ImageIcon("images/stone_image.png");
 		this.water = new ImageIcon("images/ice_frames.png");
 		this.camino = new ImageIcon("images/camino.png");
+		this.caminoPiedra = new ImageIcon("images/camino_piedra.png");
+		this.caminoAgua = new ImageIcon("images/camino_agua.png");
 	}
 	
-	void actualizar(int type, int size_x, int size_y){
-		type_t = type;
+	void actualizar(int type){
 		carga_imagenes();
 		switch(type){
 		case 1:
-			setIcon(new ImageIcon(mina.getImage().getScaledInstance(size_x,size_y,Image.SCALE_DEFAULT)));
+			setIcon(new ImageIcon(mina.getImage().getScaledInstance(getWidth(),getHeight(),Image.SCALE_DEFAULT)));
+			setBorder (BorderFactory.createLineBorder(Color.black));
 			break;
 		case 2:
-			setIcon(new ImageIcon(soldier.getImage().getScaledInstance(size_x,size_y,Image.SCALE_DEFAULT)));
+			setIcon(new ImageIcon(soldier.getImage().getScaledInstance(getWidth(),getHeight(),Image.SCALE_DEFAULT)));
+			setBorder (BorderFactory.createLineBorder(Color.black));
 			break;
 		case 3:
-			setIcon(new ImageIcon(water.getImage().getScaledInstance(size_x,size_y,Image.SCALE_DEFAULT)));
+			setIcon(new ImageIcon(water.getImage().getScaledInstance(getWidth(),getHeight(),Image.SCALE_DEFAULT)));
+			setBorder (BorderFactory.createLineBorder(Color.black));
 			break;
 		case 4:
-			setIcon(new ImageIcon(stone.getImage().getScaledInstance(size_x,size_y,Image.SCALE_DEFAULT)));
+			setIcon(new ImageIcon(stone.getImage().getScaledInstance(getWidth(),getHeight(),Image.SCALE_DEFAULT)));
+			setBorder (BorderFactory.createLineBorder(Color.black));
 			break;
 		case 5:
-			setIcon(new ImageIcon(inicio.getImage().getScaledInstance(size_x,size_y,Image.SCALE_DEFAULT)));
+			setIcon(new ImageIcon(inicio.getImage().getScaledInstance(getWidth(),getHeight(),Image.SCALE_DEFAULT)));
+			setBorder (BorderFactory.createLineBorder(Color.red));
 			break;
 		case 6:
-			setIcon(new ImageIcon(fin.getImage().getScaledInstance(size_x,size_y,Image.SCALE_DEFAULT)));
+			setIcon(new ImageIcon(fin.getImage().getScaledInstance(getWidth(),getHeight(),Image.SCALE_DEFAULT)));
+			setBorder (BorderFactory.createLineBorder(Color.red));
 			break;
 		case 7: 
 			setIcon(null);
+			setBorder (BorderFactory.createLineBorder(Color.black));
 			break;
 		case 8: 
-			setIcon(new ImageIcon(camino.getImage().getScaledInstance(size_x,size_y,Image.SCALE_DEFAULT)));
+			if(type_t == 4)
+				setIcon(new ImageIcon(caminoPiedra.getImage().getScaledInstance(getWidth(),getHeight(),Image.SCALE_DEFAULT)));
+			else if(type_t == 3)
+				setIcon(new ImageIcon(caminoAgua.getImage().getScaledInstance(getWidth(),getHeight(),Image.SCALE_DEFAULT)));
+			else
+				setIcon(new ImageIcon(camino.getImage().getScaledInstance(getWidth(),getHeight(),Image.SCALE_DEFAULT)));
 			break;
 		}
-
+		type_t = type;
 	}
 
 	public void set_type(int type, int size_x, int size_y) {
-		actualizar(type, size_x, size_y);
+		actualizar(type);
 	}
 	
 	int get_type() {
@@ -107,10 +118,17 @@ public class Casilla extends JLabel implements MouseListener {
 	public void mouseClicked(MouseEvent ev) {}
 	
 	@Override
-	public void mouseEntered(MouseEvent ev) {}
+	public void mouseEntered(MouseEvent ev) {
+		setBorder(BorderFactory.createLineBorder(new Color(91,236,252)));
+	}
 	
 	@Override
-	public void mouseExited(MouseEvent ev) {}
+	public void mouseExited(MouseEvent ev) {
+		if(type_t != 5 && type_t != 6)
+			setBorder(BorderFactory.createLineBorder(Color.black));
+		else
+			setBorder(BorderFactory.createLineBorder(Color.red));
+	}
 	
 	@Override
 	public void mousePressed(MouseEvent ev) {
