@@ -60,6 +60,7 @@ public LinkedList<Dimension> encontrarCamino(int[] posCasillaInicial, int[] posC
 				//si ya esta en la listaAbierta
 				if(listaAbierta.contains(nodosAdyacentes.get(indice))){
 					if(nodosAdyacentes.get(indice).costoG >= nodoActual.costoG){
+						//if(nodosAdyacentes.get(indice).costoG >= nodosAdyacentes.get(indice).costoG){	
 						indice++;
 						continue; //pasa a la siguiente interaccion del while
 					}
