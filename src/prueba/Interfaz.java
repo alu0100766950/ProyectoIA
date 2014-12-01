@@ -17,12 +17,14 @@ public class Interfaz extends JPanel{
     public int size_tablero_C;
     private Casilla [][] tablero;
     private int seleccion;
+    private int costoCaminoActual;
     Image imagen;
     
     public Interfaz(int size_f, int size_c) {
     	setOpaque(true);
     	ImageIcon aux = new ImageIcon("images/grass_final.jpg");
     	imagen = aux.getImage();
+    	costoCaminoActual = 0;
     	seleccion = 7;
     	size_tablero_F = size_f;
     	size_tablero_C = size_c;
@@ -104,6 +106,13 @@ public class Interfaz extends JPanel{
     }
     int getSeleccion() {
     	return seleccion;
+    }
+    
+    void setCostoCaminoActual(int costo) {
+    	costoCaminoActual = costo;
+    }
+    int getCostoCaminoActual() {
+    	return costoCaminoActual;
     }
     
     public int[] getCoordenadas(Casilla casilla) {

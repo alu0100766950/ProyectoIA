@@ -1,5 +1,6 @@
 package prueba;
 
+
 import java.awt.Dimension;
 
 public class Nodo {

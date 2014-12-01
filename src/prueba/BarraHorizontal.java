@@ -1,5 +1,6 @@
 package prueba;
 
+
 	import javax.swing.*;  
 
 import java.awt.GridLayout;

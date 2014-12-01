@@ -42,6 +42,7 @@ public LinkedList<Dimension> encontrarCamino(int[] posCasillaInicial, int[] posC
 		//Si el nodo es el final creamos el camino minimo
 		if(nodoActual.mismoNodo(nodoFinal)){
 			LinkedList<Dimension>mejorCamino = new LinkedList<Dimension>();
+			tablero.setCostoCaminoActual(nodoActual.costoTotal);
 			while(nodoActual != null){
 				mejorCamino.add(0,nodoActual.getPosicion());
 				nodoActual = nodoActual.nodoPadre;

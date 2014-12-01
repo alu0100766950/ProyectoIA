@@ -1,5 +1,6 @@
 package prueba;
 
+
 import java.awt.Dimension;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
@@ -122,6 +123,7 @@ public class PanelIzq extends JPanel{
 							inter.pintar(posicion[0], posicion[1], 8);
 						indice++;
 					}
+					mensageShow("El costo del camino actual es de :\n\n\t" +Integer.toString(inter.getCostoCaminoActual()));
 				}
 				else{
 					mensageError("No hay camino de START a FINISH");
@@ -146,5 +148,10 @@ public class PanelIzq extends JPanel{
 	public void mensageError(String mensage){
 		JOptionPane.showOptionDialog(new JOptionPane(), mensage, "Error", 
 				JOptionPane.ERROR_MESSAGE, JOptionPane.ERROR_MESSAGE, null, new Object[]{" OK "},"Cancelar");
+	}
+	
+	public void mensageShow(String mensage){
+		JOptionPane.showOptionDialog(new JOptionPane(), mensage, "Información", 
+				JOptionPane.INFORMATION_MESSAGE, JOptionPane.INFORMATION_MESSAGE, null, new Object[]{" OK "},"OK");
 	}
 }
