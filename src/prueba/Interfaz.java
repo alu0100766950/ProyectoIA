@@ -189,9 +189,10 @@ public class Interfaz extends JPanel{
     			cambiarCasilla(tablero[xy[0]][xy[1]],7);
     		}
     	}
-    	if(type == 2 && tablero[x][y+1].get_type() == 7) {
+    	if(type == 2) {
     		cambiarCasilla(tablero[x][y], 2);
-    		cambiarCasilla(tablero[x][y+1], 9);
+    		if(y+1 < size_tablero_C && tablero[x][y+1].get_type() == 7)
+    			cambiarCasilla(tablero[x][y+1], 9);
     	}
     	cambiarCasilla(tablero[x][y],type);
     }
