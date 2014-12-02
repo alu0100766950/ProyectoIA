@@ -115,6 +115,8 @@ public class Casilla extends JLabel implements MouseListener {
 			return 1; //En la casilla final hay hierba
 		case 7: 
 			return 1;
+		case 9: 
+			return 10000;
 		}
 		return 10000; //esto es solo para que no me de error la funcion por el return
 	}

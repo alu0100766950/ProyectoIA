@@ -68,22 +68,6 @@ public class Interfaz extends JPanel{
     	int[] casilla = new int[2];
     	int obstaculo;
     	Random rnd = new Random();
-
-    	//GENERAMOS EL INICIO
-    	casilla[0] = rnd.nextInt(size_tablero_F);
-		casilla[1] = rnd.nextInt(size_tablero_C);
-		cambiarCasilla(tablero[casilla[0]][casilla[1]],5);
-		
-		
-		//GENERAMOS EL FINAL
-    	casilla[0] = rnd.nextInt(size_tablero_F);
-		casilla[1] = rnd.nextInt(size_tablero_C);
-		while(tablero[casilla[0]][casilla[1]].get_type() == 5){
-			casilla[0] = rnd.nextInt(size_tablero_F);
-			casilla[1] = rnd.nextInt(size_tablero_C);
-		}
-		cambiarCasilla(tablero[casilla[0]][casilla[1]],6);
-		
 		
     	//GENERAMOS LOS OBSTACULOS
     	for(int i=0; i<numObstaculos; i++){
@@ -96,11 +80,37 @@ public class Interfaz extends JPanel{
     		obstaculo = rnd.nextInt(4) + 1;
     		if((obstaculo == 2) && casilla[1]+1 < size_tablero_C && tablero[casilla[0]][casilla[1]+1].get_type() == 7) {
     			cambiarCasilla(tablero[casilla[0]][casilla[1]],obstaculo);
-    			cambiarCasilla(tablero[casilla[0]][casilla[1]+1],9);
+    			if(casilla[1]+1 < size_tablero_C){
+    				cambiarCasilla(tablero[casilla[0]][casilla[1]+1],9);
+    				i++;
+    			}
     		}
     		else
     			cambiarCasilla(tablero[casilla[0]][casilla[1]],obstaculo); 
     	}
+    	
+    	
+    	//GENERAMOS EL INICIO
+    	casilla[0] = rnd.nextInt(size_tablero_F);
+		casilla[1] = rnd.nextInt(size_tablero_C);
+		while(tablero[casilla[0]][casilla[1]].get_type() != 7) {
+			casilla[0] = rnd.nextInt(size_tablero_F);
+			casilla[1] = rnd.nextInt(size_tablero_C);
+		}
+		cambiarCasilla(tablero[casilla[0]][casilla[1]],5);
+		
+		
+		//GENERAMOS EL FINAL
+    	casilla[0] = rnd.nextInt(size_tablero_F);
+		casilla[1] = rnd.nextInt(size_tablero_C);
+		while(tablero[casilla[0]][casilla[1]].get_type() != 7) {
+			casilla[0] = rnd.nextInt(size_tablero_F);
+			casilla[1] = rnd.nextInt(size_tablero_C);
+		}
+		cambiarCasilla(tablero[casilla[0]][casilla[1]],6);
+    	
+    	
+    	
     	validate();
     }
     
