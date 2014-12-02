@@ -7,6 +7,7 @@ import javax.swing.*;
 
 public class Casilla extends JLabel implements MouseListener {
 	private static final long serialVersionUID = 1L;
+	private boolean visitada=false;
 	int type_t;
 	/*
 	 * 1 = mina
@@ -97,6 +98,14 @@ public class Casilla extends JLabel implements MouseListener {
 	
 	int get_type() {
 		return type_t;
+	}
+	
+	void setVisitada(boolean condicion){
+		visitada = condicion;
+	}
+	
+	boolean getVisitada(){
+		return visitada;
 	}
 	
 	public int getCosto(){

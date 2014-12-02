@@ -30,6 +30,7 @@ public LinkedList<Dimension> encontrarCamino(int[] posCasillaInicial, int[] posC
 	
 	listaAbierta.clear();
 	listaCerrada.clear();
+	tablero.resetVisitada();
 	
 	Nodo nodoInicial = new Nodo(null, null,posCasillaInicial,0);
 	Nodo nodoFinal = new Nodo(null, null,posCasillaFinal,0);
@@ -86,9 +87,12 @@ private LinkedList<Nodo> encontrarNodosAdyacentes(Nodo nodoActual, Nodo nodoFina
 	if(x>0){
 		aux[0] = nodoActual.getX() - 1;
 		aux[1] = nodoActual.getY();
-		costo = tablero.getCasilla(aux).getCosto();
-		if(costo < 10000){
-			nodosAdyacentes.add(new Nodo(nodoActual, nodoFinal, aux, costo + nodoActual.costoG));
+		if(!tablero.getCasilla(aux).getVisitada()){
+			costo = tablero.getCasilla(aux).getCosto();
+			if(costo < 10000){
+				tablero.getCasilla(aux).setVisitada(true);
+				nodosAdyacentes.add(new Nodo(nodoActual, nodoFinal, aux, costo + nodoActual.costoG));
+			}
 		}
 	}
 	
@@ -96,9 +100,12 @@ private LinkedList<Nodo> encontrarNodosAdyacentes(Nodo nodoActual, Nodo nodoFina
 	if(x < tablero.size_tablero_F - 1){
 		aux[0] = nodoActual.getX() + 1;
 		aux[1] = nodoActual.getY();
-		costo = tablero.getCasilla(aux).getCosto();
-		if(costo < 10000){
-			nodosAdyacentes.add(new Nodo(nodoActual, nodoFinal, aux, costo + nodoActual.costoG));
+		if(!tablero.getCasilla(aux).getVisitada()){
+			costo = tablero.getCasilla(aux).getCosto();
+			if(costo < 10000){
+				tablero.getCasilla(aux).setVisitada(true);
+				nodosAdyacentes.add(new Nodo(nodoActual, nodoFinal, aux, costo + nodoActual.costoG));
+			}
 		}
 	}
 	
@@ -106,9 +113,12 @@ private LinkedList<Nodo> encontrarNodosAdyacentes(Nodo nodoActual, Nodo nodoFina
 		if(y > 0){
 			aux[0] = nodoActual.getX();
 			aux[1] = nodoActual.getY() - 1;;
-			costo = tablero.getCasilla(aux).getCosto();
-			if(costo < 10000){
-				nodosAdyacentes.add(new Nodo(nodoActual, nodoFinal, aux, costo + nodoActual.costoG));
+			if(!tablero.getCasilla(aux).getVisitada()){
+				costo = tablero.getCasilla(aux).getCosto();
+				if(costo < 10000){
+					tablero.getCasilla(aux).setVisitada(true);
+					nodosAdyacentes.add(new Nodo(nodoActual, nodoFinal, aux, costo + nodoActual.costoG));
+				}
 			}
 		}
 		
@@ -116,9 +126,12 @@ private LinkedList<Nodo> encontrarNodosAdyacentes(Nodo nodoActual, Nodo nodoFina
 		if(y < tablero.size_tablero_C - 1){
 			aux[0] = nodoActual.getX();
 			aux[1] = nodoActual.getY() + 1;
-			costo = tablero.getCasilla(aux).getCosto();
-			if(costo < 10000){
-				nodosAdyacentes.add(new Nodo(nodoActual, nodoFinal, aux, costo + nodoActual.costoG));
+			if(!tablero.getCasilla(aux).getVisitada()){
+				costo = tablero.getCasilla(aux).getCosto();
+				if(costo < 10000){
+					tablero.getCasilla(aux).setVisitada(true);
+					nodosAdyacentes.add(new Nodo(nodoActual, nodoFinal, aux, costo + nodoActual.costoG));
+				}
 			}
 		}
 		return nodosAdyacentes;

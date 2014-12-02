@@ -162,8 +162,17 @@ public class Interfaz extends JPanel{
     
     public void reset() {
     	for(int i = 0; i < size_tablero_F; i++)
-    		for(int j = 0; j < size_tablero_C; j++)
+    		for(int j = 0; j < size_tablero_C; j++){
     			cambiarCasilla(tablero[i][j], 7);
+    			tablero[i][j].setVisitada(false);
+    		}
+    }
+    
+    public void resetVisitada() {
+    	for(int i = 0; i < size_tablero_F; i++)
+    		for(int j = 0; j < size_tablero_C; j++){
+    			tablero[i][j].setVisitada(false);
+    		}
     }
     
     public void pintar(int x, int y, int type) {
