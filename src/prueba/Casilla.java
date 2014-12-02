@@ -1,10 +1,8 @@
 package prueba;
 
-
 import java.awt.*;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
-
 import javax.swing.*;
 
 public class Casilla extends JLabel implements MouseListener {
@@ -19,8 +17,9 @@ public class Casilla extends JLabel implements MouseListener {
 	 * 6 = final
 	 * 7 = hierba
 	 * 8 = paso el robot
+	 * 9 = disparo del soldado
 	 */
-	private ImageIcon mina,inicio,fin,soldier,stone,water,camino,caminoPiedra,caminoAgua;
+	private ImageIcon mina,inicio,fin,soldier,stone,water,camino,caminoPiedra,caminoAgua,disparo;
 	private Interfaz tablero;
 	private int [] casillaMarcada = new int [2];
 	
@@ -42,6 +41,7 @@ public class Casilla extends JLabel implements MouseListener {
 		this.camino = new ImageIcon("images/camino.png");
 		this.caminoPiedra = new ImageIcon("images/camino_piedra.png");
 		this.caminoAgua = new ImageIcon("images/camino_agua.png");
+		this.disparo = new ImageIcon("images/gunfire_rotated.png");
 	}
 	
 	void actualizar(int type){
@@ -83,6 +83,10 @@ public class Casilla extends JLabel implements MouseListener {
 			else
 				setIcon(new ImageIcon(camino.getImage().getScaledInstance(getWidth(),getHeight(),Image.SCALE_DEFAULT)));
 			break;
+		case 9: 
+			setIcon(new ImageIcon(disparo.getImage().getScaledInstance(getWidth(),getHeight(),Image.SCALE_DEFAULT)));
+			setBorder (BorderFactory.createLineBorder(Color.black));
+			break;	
 		}
 		type_t = type;
 	}

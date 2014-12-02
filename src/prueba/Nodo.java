@@ -1,18 +1,18 @@
 package prueba;
 
-
 import java.awt.Dimension;
 
 public class Nodo {
 	public Nodo nodoPadre;  //Nodo del que viene
 	public Nodo nodoFinal;  //Nodo destino
-	private int[] posicion = new int[2]; //Posicion en el tablero
+	private int[] posicion; //Posicion en el tablero
 	public int costoTotal;  //costo total del camino hasta ahi
 	public int costoG; 
-	public boolean cerrado = false;
-	
-	//Constructor de la clase Nodo
+	public boolean cerrado;
 	public Nodo (Nodo nodoPadre_, Nodo nodoFinal_, int[] posicionTablero, int costo){
+		posicion = new int[2];
+		cerrado = false;
+		//Constructor de la clase Nodo
 		nodoPadre = nodoPadre_;
 		nodoFinal = nodoFinal_;
 		posicion[0] = posicionTablero[0];

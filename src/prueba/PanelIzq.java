@@ -1,12 +1,10 @@
 package prueba;
 
-
 import java.awt.Dimension;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.LinkedList;
-
 import javax.swing.*;  
 
 @SuppressWarnings("serial")
@@ -108,7 +106,7 @@ public class PanelIzq extends JPanel{
 			int [] fin = inter.buscaType(6);
 			
 			if(inicio[0] == -1 || fin[0] == -1){
-				mensageError("Para iniciar la busqueda debe haber un START y un FINISH");
+				mensageError("Para iniciar la busqueda debe haber un START y un FINISH!");
 			}
 			else{
 				AEstrella algoritmo = new AEstrella(inter);
@@ -151,7 +149,7 @@ public class PanelIzq extends JPanel{
 	}
 	
 	public void mensageShow(String mensage){
-		JOptionPane.showOptionDialog(new JOptionPane(), mensage, "Información", 
+		JOptionPane.showOptionDialog(new JOptionPane(), mensage, "Informacion", 
 				JOptionPane.INFORMATION_MESSAGE, JOptionPane.INFORMATION_MESSAGE, null, new Object[]{" OK "},"OK");
 	}
 }

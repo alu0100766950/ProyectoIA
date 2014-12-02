@@ -1,13 +1,8 @@
 package prueba;
 
 import javax.swing.*;
-
 import java.awt.*;
 import java.util.Random;
-
-
-
-
 
 public class Interfaz extends JPanel{
     private static final long serialVersionUID = 1L;
@@ -42,6 +37,9 @@ public class Interfaz extends JPanel{
             }
 		}
 		validate();
+    }
+    int getCol() {
+    	return size_tablero_C;
     }
     
     @Override
@@ -96,7 +94,12 @@ public class Interfaz extends JPanel{
     			casilla[1] = rnd.nextInt(size_tablero_C);
     		}
     		obstaculo = rnd.nextInt(4) + 1;
-    		cambiarCasilla(tablero[casilla[0]][casilla[1]],obstaculo); 
+    		if((obstaculo == 2) && casilla[1]+1 < size_tablero_C && tablero[casilla[0]][casilla[1]+1].get_type() == 7) {
+    			cambiarCasilla(tablero[casilla[0]][casilla[1]],obstaculo);
+    			cambiarCasilla(tablero[casilla[0]][casilla[1]+1],9);
+    		}
+    		else
+    			cambiarCasilla(tablero[casilla[0]][casilla[1]],obstaculo); 
     	}
     	validate();
     }
@@ -166,6 +169,10 @@ public class Interfaz extends JPanel{
     		if((xy[0] != -1) && (xy[0] != -1)) {
     			cambiarCasilla(tablero[xy[0]][xy[1]],7);
     		}
+    	}
+    	if(type == 2 && tablero[x][y+1].get_type() == 7) {
+    		cambiarCasilla(tablero[x][y], 2);
+    		cambiarCasilla(tablero[x][y+1], 9);
     	}
     	cambiarCasilla(tablero[x][y],type);
     }

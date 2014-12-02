@@ -1,8 +1,6 @@
 package prueba;
 
-
-	import javax.swing.*;  
-
+import javax.swing.*;  
 import java.awt.GridLayout;
 import java.awt.event.*;
 
