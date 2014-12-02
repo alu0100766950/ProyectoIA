@@ -28,7 +28,7 @@ public class Nodo {
 	public int CalcularCosto(){
 		return Math.abs(this.posicion[0] - nodoFinal.getX()) + Math.abs(this.posicion[1] - nodoFinal.getY());
 	}
-	//ges de la posicion en X
+	//get de la posicion en X
 	public int getX(){
 		return this.posicion[0];
 	}

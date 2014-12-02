@@ -4,6 +4,7 @@ import java.awt.Dimension;
 import java.util.LinkedList;
 
 public class AEstrella {
+	
 private LinkedList<Nodo>listaAbierta;
 //Esta segunda lista no la ponemos de Nodos para poder usar el Contains despues
 private LinkedList<Dimension>listaCerrada;
@@ -61,6 +62,7 @@ public LinkedList<Dimension> encontrarCamino(int[] posCasillaInicial, int[] posC
 				//si ya esta en la listaAbierta
 				if(listaAbierta.contains(nodosAdyacentes.get(indice))){
 					if(nodosAdyacentes.get(indice).costoG >= nodoActual.costoG){
+						nodosAdyacentes.remove(indice);
 						//if(nodosAdyacentes.get(indice).costoG >= nodosAdyacentes.get(indice).costoG){	
 						indice++;
 						continue; //pasa a la siguiente interaccion del while
@@ -88,6 +90,8 @@ private LinkedList<Nodo> encontrarNodosAdyacentes(Nodo nodoActual, Nodo nodoFina
 		aux[1] = nodoActual.getY();
 		costo = tablero.getCasilla(aux).getCosto();
 		if(costo < 10000){
+			if (tablero.getCasilla(aux).get_type() != 5 || tablero.getCasilla(aux).get_type() != 6)
+				tablero.cambiarCasilla(tablero.getCasilla(aux), 10);
 			nodosAdyacentes.add(new Nodo(nodoActual, nodoFinal, aux, costo + nodoActual.costoG));
 		}
 	}
@@ -98,6 +102,8 @@ private LinkedList<Nodo> encontrarNodosAdyacentes(Nodo nodoActual, Nodo nodoFina
 		aux[1] = nodoActual.getY();
 		costo = tablero.getCasilla(aux).getCosto();
 		if(costo < 10000){
+			if (tablero.getCasilla(aux).get_type() != 5 || tablero.getCasilla(aux).get_type() != 6)
+				tablero.cambiarCasilla(tablero.getCasilla(aux), 10);
 			nodosAdyacentes.add(new Nodo(nodoActual, nodoFinal, aux, costo + nodoActual.costoG));
 		}
 	}
@@ -108,6 +114,8 @@ private LinkedList<Nodo> encontrarNodosAdyacentes(Nodo nodoActual, Nodo nodoFina
 			aux[1] = nodoActual.getY() - 1;;
 			costo = tablero.getCasilla(aux).getCosto();
 			if(costo < 10000){
+				if (tablero.getCasilla(aux).get_type() != 5 || tablero.getCasilla(aux).get_type() != 6)
+					tablero.cambiarCasilla(tablero.getCasilla(aux), 10);
 				nodosAdyacentes.add(new Nodo(nodoActual, nodoFinal, aux, costo + nodoActual.costoG));
 			}
 		}
@@ -118,10 +126,13 @@ private LinkedList<Nodo> encontrarNodosAdyacentes(Nodo nodoActual, Nodo nodoFina
 			aux[1] = nodoActual.getY() + 1;
 			costo = tablero.getCasilla(aux).getCosto();
 			if(costo < 10000){
+				if (tablero.getCasilla(aux).get_type() != 5 || tablero.getCasilla(aux).get_type() != 6)
+					tablero.cambiarCasilla(tablero.getCasilla(aux), 10);
 				nodosAdyacentes.add(new Nodo(nodoActual, nodoFinal, aux, costo + nodoActual.costoG));
 			}
 		}
-		return nodosAdyacentes;
-}
+		aux = null;
+		return nodosAdyacentes;  
+	}
 
 }

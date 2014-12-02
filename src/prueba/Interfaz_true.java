@@ -52,7 +52,7 @@ public class Interfaz_true extends JFrame{
 		aux[0] = 10;
 		aux[1] = 10;
 		panel.setVisible(true);
-		
+		panel.repaint();
 		acceptButton.addActionListener(new ActionListener() {
 			
 			@Override
@@ -70,7 +70,6 @@ public class Interfaz_true extends JFrame{
 				System.exit(0);
 			}
 		});
-		validate();
 	}
 		
 	void inicio (int[] a) {
