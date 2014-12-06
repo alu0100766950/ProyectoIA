@@ -21,7 +21,7 @@ public class Interfaz extends JPanel{
     	ImageIcon aux = new ImageIcon("images/grass_final.jpg");
     	imagen = aux.getImage();
     	costoCaminoActual = 0;
-    	porcentajeObstaculos = 0;
+    	porcentajeObstaculos = (float) 0.0;
     	seleccion = 7;
     	size_tablero_F = size_f;
     	size_tablero_C = size_c;
@@ -48,8 +48,8 @@ public class Interfaz extends JPanel{
     	return size_tablero_F;
     }
     
-    public void setPorcentajeObstaculos(int porcentaje) {
-    	porcentajeObstaculos = (float) porcentaje;
+    public void setPorcentajeObstaculos(float porcentaje) {
+    	porcentajeObstaculos = porcentaje;
     }
     
     public float getPorcentajeObstaculos() {
@@ -58,8 +58,11 @@ public class Interfaz extends JPanel{
     		for(int j = 0; j < size_tablero_C; j++)
     			if (tablero[i][j].get_type() == 8)
     				cont++;
-    			
-    	return (float) (porcentajeObstaculos - - (100.0 / ((float) size_tablero_F * (float) size_tablero_C)));
+    	
+    	if(cont == 0)
+    		return porcentajeObstaculos;
+    	
+    	return (float) (porcentajeObstaculos - (100.0 / ((float) size_tablero_F * (float) size_tablero_C)));
     }
     
     @Override
