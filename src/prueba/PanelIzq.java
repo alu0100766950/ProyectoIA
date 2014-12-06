@@ -121,7 +121,7 @@ public class PanelIzq extends JPanel{
 							inter.pintar(posicion[0], posicion[1], 8);
 						indice++;
 					}
-					mensageShow("El costo del camino actual es de :\n\n\t" +Integer.toString(inter.getCostoCaminoActual()));
+					mensageShow("El costo del camino actual es de :\n\n\t" +Integer.toString(inter.getCostoCaminoActual()), "Coste Camino Mínimo");
 				}
 				else{
 					mensageError("No hay camino de START a FINISH");
@@ -148,8 +148,8 @@ public class PanelIzq extends JPanel{
 				JOptionPane.ERROR_MESSAGE, JOptionPane.ERROR_MESSAGE, null, new Object[]{" OK "},"Cancelar");
 	}
 	
-	public void mensageShow(String mensage){
-		JOptionPane.showOptionDialog(new JOptionPane(), mensage, "Informacion", 
+	public void mensageShow(String mensage1, String mensage2){
+		JOptionPane.showOptionDialog(new JOptionPane(), mensage1, mensage2, 
 				JOptionPane.INFORMATION_MESSAGE, JOptionPane.INFORMATION_MESSAGE, null, new Object[]{" OK "},"OK");
 	}
 }

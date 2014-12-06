@@ -13,6 +13,7 @@ public class Interfaz extends JPanel{
     private Casilla [][] tablero;
     private int seleccion;
     private int costoCaminoActual;
+    private float porcentajeObstaculos;
     Image imagen;
     
     public Interfaz(int size_f, int size_c) {
@@ -20,6 +21,7 @@ public class Interfaz extends JPanel{
     	ImageIcon aux = new ImageIcon("images/grass_final.jpg");
     	imagen = aux.getImage();
     	costoCaminoActual = 0;
+    	porcentajeObstaculos = 0;
     	seleccion = 7;
     	size_tablero_F = size_f;
     	size_tablero_C = size_c;
@@ -38,8 +40,26 @@ public class Interfaz extends JPanel{
 		}
 		validate();
     }
-    int getCol() {
+    public int getCol() {
     	return size_tablero_C;
+    }
+    
+    public int getFil() {
+    	return size_tablero_F;
+    }
+    
+    public void setPorcentajeObstaculos(int porcentaje) {
+    	porcentajeObstaculos = (float) porcentaje;
+    }
+    
+    public float getPorcentajeObstaculos() {
+    	int cont = 0;
+    	for(int i = 0; i < size_tablero_F; i++)
+    		for(int j = 0; j < size_tablero_C; j++)
+    			if (tablero[i][j].get_type() == 8)
+    				cont++;
+    			
+    	return (float) (porcentajeObstaculos - - (100.0 / ((float) size_tablero_F * (float) size_tablero_C)));
     }
     
     @Override
@@ -54,11 +74,18 @@ public class Interfaz extends JPanel{
     }
     
     public void cambiarCasilla(Casilla casilla, int type){
+    	if(type != 7 && type != 5 && type != 6)
+    		porcentajeObstaculos = (float) (porcentajeObstaculos + (100.0 / ((float) size_tablero_F * (float) size_tablero_C)));
+    	
+    	if( (type == 7  || type == 5 || type == 6) && casilla.get_type() != 7 && casilla.get_type() != 5 && casilla.get_type() != 6)
+    		porcentajeObstaculos = (float) (porcentajeObstaculos - (100.0 / ((float) size_tablero_F * (float) size_tablero_C)));
+    	
     	casilla.set_type(type, WIDTH/size_tablero_F,HEIGHT/size_tablero_C);
     }
     
     public void obstaculosAleatorios(int porcentaje){
 		reset();
+		//setPorcentajeObstaculos(porcentaje);
     	int numObstaculos = (porcentaje * size_tablero_F * size_tablero_C) / 100;
     	if(numObstaculos >= size_tablero_C * size_tablero_F)
     		numObstaculos = numObstaculos - 2;
@@ -145,6 +172,10 @@ public class Interfaz extends JPanel{
     	return tablero[coordenadas[0]][coordenadas[1]];
     }
     
+    public Casilla getCasilla(int x, int y){
+    	return tablero[x][y];
+    }
+    
     public int[] buscaType(int type) {
     	int [] aux = new int [2];
     	for(int i = 0; i < size_tablero_F; i++)
@@ -166,6 +197,7 @@ public class Interfaz extends JPanel{
     			cambiarCasilla(tablero[i][j], 7);
     			tablero[i][j].setVisitada(false);
     		}
+    	setPorcentajeObstaculos(0);
     }
     
     public void resetVisitada() {
@@ -189,11 +221,50 @@ public class Interfaz extends JPanel{
     			cambiarCasilla(tablero[xy[0]][xy[1]],7);
     		}
     	}
-    	if(type == 2) {
+    	if(type == 2){
     		cambiarCasilla(tablero[x][y], 2);
-    		if(y+1 < size_tablero_C && tablero[x][y+1].get_type() == 7)
+    		if(y+1 < size_tablero_C)
     			cambiarCasilla(tablero[x][y+1], 9);
     	}
     	cambiarCasilla(tablero[x][y],type);
+    }
+    
+    public void newTablero(int [] size){
+    	removeAll();
+    	setOpaque(true);
+    	ImageIcon aux = new ImageIcon("images/grass_final.jpg");
+    	imagen = aux.getImage();
+    	costoCaminoActual = 0;
+    	porcentajeObstaculos = 0;
+    	seleccion = 7;
+    	size_tablero_F = size[0];
+    	size_tablero_C = size[1];
+    	WIDTH = (Toolkit.getDefaultToolkit().getScreenSize().width);
+    	HEIGHT = (Toolkit.getDefaultToolkit().getScreenSize().height);
+    	setSize(WIDTH,HEIGHT);
+    	setLayout(new GridLayout(size_tablero_F,size_tablero_C));
+
+        //Inicialización inicial del tablero lleno de hierba
+        tablero = new Casilla [size_tablero_F][size_tablero_C];
+		for(int i = 0; i < size_tablero_F; i++) { 
+            for(int j = 0; j < size_tablero_C; j++) {
+                tablero[i][j] = new Casilla(7,this);
+                add(tablero[i][j]);
+            }
+		}
+		validate();
+    }
+    
+    public String toString(){
+    	String aux=Integer.toString(getFil()) + "\n";
+    	aux+=Integer.toString(getCol()) + "\n";
+    	
+    	for(int i=0; i<getFil();i++){
+    		for(int j=0;j<getCol();j++){
+    			aux+=Integer.toString(tablero[i][j].get_type());
+    		}
+    		aux +="\n";
+    	}
+    	return aux;
     }
 }
